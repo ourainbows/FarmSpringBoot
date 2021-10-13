@@ -1,5 +1,7 @@
 package co.edu.usa.fincaapp.entidades;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name="mensajes")
-public class Mensaje {
+public class Mensaje implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -22,7 +24,7 @@ public class Mensaje {
     private String text;
     
     @ManyToOne
-    @JoinColumn(name="farm_id")
+    @JoinColumn(name="farmId")
     @JsonIgnoreProperties("mensajes")
     private Finca finca;
 

@@ -1,19 +1,23 @@
 package co.edu.usa.fincaapp.entidades;
 
+import java.io.Serializable;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name="calificacion")
-public class Calificacion {
+public class Calificacion implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,10 +28,10 @@ public class Calificacion {
     @Column(name="text", length = 250)
     private String text;
 
-    @ManyToOne
-    @JoinColumn(name = "reservation_id")
+/*     @OneToOne(cascade = { CascadeType.PERSIST }, mappedBy = "calificaciones")
+    @JoinColumn(name = "reservationId")
     @JsonIgnoreProperties("calificaciones")
-    private Reserva reserva;
+    private List<Reserva> reserva; */
 
     
     public Long getId() {

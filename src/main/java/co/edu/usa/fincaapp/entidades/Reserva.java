@@ -1,5 +1,6 @@
 package co.edu.usa.fincaapp.entidades;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -10,13 +11,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "reservas")
-public class Reserva {
+public class Reserva implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -25,20 +26,21 @@ public class Reserva {
     private String startDate;
     @Column(name="endDate")
     private String endDate;
-
+  
     @ManyToOne
-    @JoinColumn(name = "client_id")
-    @JsonIgnoreProperties("reservas")
-    private Cliente cliente;
-
-    @ManyToOne
-    @JoinColumn(name = "farm_id")
+    @JoinColumn(name = "farmId")
     @JsonIgnoreProperties("reservas")
     private Finca finca;
 
-    @OneToMany(cascade = { CascadeType.PERSIST }, mappedBy = "reservas")
-    @JsonIgnoreProperties("reservas")
-    private List<Calificacion> calificaciones;
+/*     @ManyToOne
+    @JsonIgnoreProperties("reserva")
+    public List<Cliente> clientes; */
+
+/* 
+    @OneToOne(cascade = { CascadeType.PERSIST }, mappedBy = "reserva")
+    @JsonIgnoreProperties("reserva")
+    public List<Calificacion> calificaciones;  */
+ 
 
     public Long getId() {
         return id;

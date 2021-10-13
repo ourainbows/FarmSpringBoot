@@ -1,5 +1,6 @@
 package co.edu.usa.fincaapp.entidades;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -15,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name="categorias")
-public class Categoria {
+public class Categoria implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -27,7 +28,7 @@ public class Categoria {
     
     @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "categoria")
     @JsonIgnoreProperties("categoria")
-    private List<Finca> fincas;
+    public List<Finca> fincas;
 
     public Long getId() {
         return id;

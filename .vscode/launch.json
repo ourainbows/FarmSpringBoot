@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-FincaappApplication<fincaapp>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "co.edu.usa.fincaapp.FincaappApplication",
+            "projectName": "fincaapp",
+            "args": ""
+        }
+    ]
+}

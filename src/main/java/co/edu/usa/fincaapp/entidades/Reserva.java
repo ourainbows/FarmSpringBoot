@@ -11,7 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -32,14 +32,16 @@ public class Reserva implements Serializable {
     @JsonIgnoreProperties("reservas")
     private Finca finca;
 
-/*     @ManyToOne
+    
+    @ManyToOne
+    @JoinColumn(name = "clientId")
     @JsonIgnoreProperties("reserva")
-    public List<Cliente> clientes; */
+    public Cliente cliente;
 
-/* 
-    @OneToOne(cascade = { CascadeType.PERSIST }, mappedBy = "reserva")
+
+    @OneToMany(cascade = { CascadeType.PERSIST }, mappedBy = "reserva")
     @JsonIgnoreProperties("reserva")
-    public List<Calificacion> calificaciones;  */
+    public List<Calificacion> calificacion; 
  
 
     public Long getId() {

@@ -24,8 +24,8 @@ public class MensajeServicio {
 
     public Mensaje saveMessage(Mensaje mensaje) {
         if (mensaje != null) {
-            if (mensaje.getId() != null) {
-                Optional<Mensaje> oMessage = mensajeRepositorio.getMensajePorId(mensaje.getId());
+            if (mensaje.getIdMessage() != null) {
+                Optional<Mensaje> oMessage = mensajeRepositorio.getMensajePorId(mensaje.getIdMessage());
                 if (oMessage.isEmpty()) {
                     return mensajeRepositorio.guardarMensaje(mensaje);
                 } else {

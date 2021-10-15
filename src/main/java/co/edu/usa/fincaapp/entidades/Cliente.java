@@ -19,29 +19,44 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class Cliente implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @Column(name = "name", length = 250)
-    private String name;
+    // *********
+    private Long idClient;
+    // **********
     @Column(name = "email", length = 45)
     private String email;
-    @Column
-    private Integer age;
     @Column(name = "password", length = 45)
     private String password;
-
-
-
-    @OneToMany(cascade = { CascadeType.PERSIST }, mappedBy = "cliente")
-    @JsonIgnoreProperties("cliente")
-    private List<Reserva> reserva;
+    @Column(name = "name", length = 250)
+    private String name;
+    @Column
+    private Integer age;
     
+    @OneToMany(cascade = { CascadeType.PERSIST }, mappedBy = "client")
+    @JsonIgnoreProperties("client")
+    //@JsonIgnoreProperties({("client"),("reservations")})
+    private List<Mensaje> messages;
 
+    @OneToMany(cascade = { CascadeType.PERSIST }, mappedBy = "client")
+    @JsonIgnoreProperties("client")
+    private List<Reserva> reservations;
 
-    public Long getId() {
-        return id;
+    public Long getIdClient() {
+        return idClient;
     }
-    public void setId(Long id) {
-        this.id = id;
+    public List<Reserva> getReservations() {
+        return reservations;
+    }
+    public void setReservations(List<Reserva> reservations) {
+        this.reservations = reservations;
+    }
+    public List<Mensaje> getMessages() {
+        return messages;
+    }
+    public void setMessages(List<Mensaje> messages) {
+        this.messages = messages;
+    }
+    public void setIdClient(Long id) {
+        this.idClient = id;
     }
     public String getName() {
         return name;

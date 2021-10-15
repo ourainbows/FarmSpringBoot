@@ -28,9 +28,9 @@ public class Calificacion implements Serializable {
 
 
     @ManyToOne
-    @JoinColumn(name = "reservationId")
-    @JsonIgnoreProperties("calificacion")
-    public Reserva reserva;
+    @JoinColumn(name = "reservation")
+    @JsonIgnoreProperties("score")
+    public Reserva reservation;
 
     
     public Long getId() {

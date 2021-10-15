@@ -18,31 +18,55 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class Mensaje implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idMessage;
 
-    @Column(name="text", length = 250)
-    private String text;
+    @Column(name="messageText", length = 250)
+    private String messageText;
     
     @ManyToOne
-    @JoinColumn(name="farmId")
-    @JsonIgnoreProperties("mensajes")
-    private Finca finca;
+    @JoinColumn(name="farm")
+    @JsonIgnoreProperties({ ("messages"), ("reservations") })
+    private Finca farm;
+// ***************************
+    @ManyToOne
+    @JoinColumn(name = "client")
+    //@JsonIgnoreProperties("messages")
+    @JsonIgnoreProperties({("messages"), ("reservations") })
+    private Cliente client;
 
-    public Long getId() {
-        return id;
+    public Cliente getClient() {
+        return client;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setClient(Cliente client) {
+        this.client = client;
     }
 
-    public String getText() {
-        return text;
+    public Finca getFarm() {
+        return farm;
     }
 
-    public void setText(String text) {
-        this.text = text;
-    } 
+    public void setFarm(Finca farm) {
+        this.farm = farm;
+    }
+
+    public Long getIdMessage() {
+        return idMessage;
+    }
+
+    public void setIdMessage(Long id) {
+        this.idMessage = id;
+    }
+
+    public String getMessageText() {
+        return messageText;
+    }
+
+    public void setMessageText(String messageText) {
+        this.messageText = messageText;
+    }
+
+
 
     
     

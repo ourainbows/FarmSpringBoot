@@ -23,8 +23,8 @@ public class ClienteServicio {
     }
     public Cliente guardar(Cliente cliente) {
         if(cliente != null){
-            if(cliente.getId() != null){
-                Optional<Cliente> oCliente = clienteRespositorio.getClientePorId(cliente.getId());
+            if(cliente.getIdClient() != null){
+                Optional<Cliente> oCliente = clienteRespositorio.getClientePorId(cliente.getIdClient());
                 if(oCliente.isEmpty()){
                     return clienteRespositorio.guardarCliente(cliente);
                 }else{

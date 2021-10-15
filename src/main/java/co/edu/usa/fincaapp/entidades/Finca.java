@@ -22,27 +22,27 @@ public class Finca implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "name", length = 45)
+    private String name;
     @Column(name="address", length = 45)
     private String address;
-    @Column(name="exension")
-    private Double exension;
-    @Column(name="name", length = 45)
-    private String name;
+    @Column(name="extension")
+    private Double extension;
     @Column(name = "description", length = 250)
     private String description;
 
     @ManyToOne
-    @JoinColumn(name="categoryId")
-    @JsonIgnoreProperties("fincas")
-    private Categoria categoria;
+    @JoinColumn(name="category")
+    @JsonIgnoreProperties("farms")
+    private Categoria category;
 
-    @OneToMany(cascade = { CascadeType.PERSIST }, mappedBy = "finca")
-    @JsonIgnoreProperties("finca")
-    public List<Mensaje> mensajes;
+    @OneToMany(cascade = { CascadeType.PERSIST }, mappedBy = "farm")
+    @JsonIgnoreProperties("farm")
+    public List<Mensaje> messages;
 
-    @OneToMany(cascade = { CascadeType.PERSIST }, mappedBy = "finca")
-    @JsonIgnoreProperties("finca")
-    public List<Reserva> reservas;
+    @OneToMany(cascade = { CascadeType.PERSIST }, mappedBy = "farm")
+    @JsonIgnoreProperties("farm")
+    public List<Reserva> reservations;
    
     public Long getId() {
         return id;
@@ -50,17 +50,35 @@ public class Finca implements Serializable{
     public void setId(Long id) {
         this.id = id;
     }
+    public Categoria getCategory() {
+        return category;
+    }
+    public void setCategory(Categoria category) {
+        this.category = category;
+    }
+    public List<Mensaje> getMessages() {
+        return messages;
+    }
+    public void setMessages(List<Mensaje> mensajes) {
+        this.messages = mensajes;
+    }
+    public List<Reserva> getReservations() {
+        return reservations;
+    }
+    public void setReservations(List<Reserva> reservas) {
+        this.reservations = reservas;
+    }
     public String getAddress() {
         return address;
     }
     public void setAddress(String address) {
         this.address = address;
     }
-    public Double getExension() {
-        return exension;
+    public Double getExtension() {
+        return extension;
     }
-    public void setExension(Double exension) {
-        this.exension = exension;
+    public void setExtension(Double exension) {
+        this.extension = exension;
     }
     public String getName() {
         return name;

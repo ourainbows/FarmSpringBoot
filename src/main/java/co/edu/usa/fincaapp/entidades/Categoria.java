@@ -21,14 +21,20 @@ public class Categoria implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="name",nullable = false,length = 45)
-    private String nombre;
+    @Column(name="name",length = 45)
+    private String name;
+    public List<Finca> getFarms() {
+        return farms;
+    }
+    public void setFarms(List<Finca> farms) {
+        this.farms = farms;
+    }
     @Column(name ="description", length = 250)
     private String description; 
     
-    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "categoria")
-    @JsonIgnoreProperties("categoria")
-    public List<Finca> fincas;
+    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "category")
+    @JsonIgnoreProperties("category")
+    public List<Finca> farms;
 
     public Long getId() {
         return id;
@@ -36,11 +42,11 @@ public class Categoria implements Serializable{
     public void setId(Long id) {
         this.id = id;
     }
-    public String getNombre() {
-        return nombre;
+    public String getName() {
+        return name;
     }
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setName(String nombre) {
+        this.name = nombre;
     }
     public String getDescription() {
         return description;

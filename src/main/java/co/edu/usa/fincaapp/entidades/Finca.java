@@ -27,7 +27,7 @@ public class Finca implements Serializable{
     @Column(name="address", length = 45)
     private String address;
     @Column(name="extension")
-    private Double extension;
+    private Integer extension;
     @Column(name = "description", length = 250)
     private String description;
 
@@ -74,10 +74,10 @@ public class Finca implements Serializable{
     public void setAddress(String address) {
         this.address = address;
     }
-    public Double getExtension() {
+    public Integer getExtension() {
         return extension;
     }
-    public void setExtension(Double exension) {
+    public void setExtension(Integer exension) {
         this.extension = exension;
     }
     public String getName() {

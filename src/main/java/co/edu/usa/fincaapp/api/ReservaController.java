@@ -28,6 +28,7 @@ public class ReservaController {
     }
 
     @PostMapping("/save")
+    @ResponseStatus(code = HttpStatus.CREATED)
     //@ResponseStatus(HttpStatus.CREATED)
     public Reserva saveReserva(@RequestBody Reserva reserva) {
         return reservaServicio.saveReservation(reserva);

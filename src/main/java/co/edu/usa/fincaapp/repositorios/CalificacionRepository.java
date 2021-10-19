@@ -24,4 +24,8 @@ public class CalificacionRepository {
     public Calificacion guardarCalificacion(Calificacion calificacion) {
         return calificacionRespositorio.save(calificacion);
     }
+
+    public void borrarCalificacion(Calificacion calificacion) {
+        calificacionRespositorio.delete(calificacion);
+    }
 }

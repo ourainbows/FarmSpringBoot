@@ -22,10 +22,10 @@ public class ClienteRepository {
     public Cliente guardarCliente(Cliente cliente){
         return clienteRespositorio.save(cliente);
     }
-/*     public void borrarCliente(Cliente cliente){
+    public void borrarCliente(Cliente cliente){
         clienteRespositorio.delete(cliente);
     }
-    public void borrarPorIdCliente(Long id){
+/*     public void borrarPorIdCliente(Long id){
         clienteRespositorio.deleteById(id);
     } */
 }

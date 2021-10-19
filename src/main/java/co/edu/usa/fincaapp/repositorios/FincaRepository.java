@@ -19,10 +19,10 @@ public class FincaRepository {
     public List<Finca> getFincas(){
         return (List<Finca>)fincaRepoitorio.findAll();
     }
-    public Finca guardarFinca(Finca f){
-        return fincaRepoitorio.save(f);
+    public Finca guardarFinca(Finca finca){
+        return fincaRepoitorio.save(finca);
     }
-    public void borrarFinca(Finca f){
-        fincaRepoitorio.delete(f);
+    public void borrarFinca(Finca finca){
+        fincaRepoitorio.delete(finca);
     }
 }

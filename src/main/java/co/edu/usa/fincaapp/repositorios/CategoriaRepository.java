@@ -24,4 +24,8 @@ public class CategoriaRepository {
     public Categoria guardaCategoria(Categoria categoria) {
         return categoriaRespositorio.save(categoria);
     }
+
+    public void borrarCategoria(Categoria categoria) {
+        categoriaRespositorio.delete(categoria);
+    }
 }

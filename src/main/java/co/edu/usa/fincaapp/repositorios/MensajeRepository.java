@@ -24,4 +24,8 @@ public class MensajeRepository {
     public Mensaje guardarMensaje(Mensaje mensaje) {
         return mensajeRepositorio.save(mensaje);
     }
+
+    public void borrarMensaje(Mensaje mensaje) {
+        mensajeRepositorio.delete(mensaje);
+    }
 }

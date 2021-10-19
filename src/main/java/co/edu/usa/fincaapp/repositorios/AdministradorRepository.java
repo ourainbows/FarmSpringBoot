@@ -24,4 +24,9 @@ public class AdministradorRepository {
     public Administrador guardarAdministrador(Administrador administrador) {
         return administradorRepositorio.save(administrador);
     }
+
+    public void borrarAdministrador(Administrador administrador) {
+        administradorRepositorio.delete(administrador);
+    }
+    
 }

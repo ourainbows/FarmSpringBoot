@@ -2,6 +2,7 @@ package co.edu.usa.fincaapp.entidades;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -26,13 +28,19 @@ public class Calificacion implements Serializable {
     @Column(name="text", length = 250)
     private String text;
 
-/* 
-    @ManyToOne
-    @JoinColumn(name = "reservation")
-    @JsonIgnoreProperties("score")
-    public Reserva reservation;
- */
-    
+
+    @OneToOne(cascade = CascadeType.ALL )
+    @JoinColumn(name = "reserva", referencedColumnName = "id")
+    //@JsonIgnoreProperties("score")
+    private Reserva reserva;
+
+
+    public Reserva getReserva() {
+        return reserva;
+    }
+    public void setReserva(Reserva reserva) {
+        this.reserva = reserva;
+    }
     public Long getId() {
         return id;
     }

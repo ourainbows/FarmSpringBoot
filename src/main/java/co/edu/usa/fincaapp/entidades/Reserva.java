@@ -15,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -45,11 +46,11 @@ public class Reserva implements Serializable {
     @JsonIgnoreProperties({ ("reservations"), ("messages") })
     public Cliente client;
 
-    private String score; 
-/*     @OneToMany(cascade = { CascadeType.PERSIST }, mappedBy = "reservation")
-    @JsonIgnoreProperties("reservation")
-    public Set<Calificacion> score; 
-  */
+    /*    private String score;  */
+ 
+    @OneToOne(mappedBy = "reserva")
+    //@JsonIgnoreProperties("reservation")
+    public Calificacion score;
    
 
     public Long getId() {
@@ -85,11 +86,11 @@ public class Reserva implements Serializable {
         this.status = status;
     }
 
-    public String getScore() {
+    public Calificacion getScore() {
         return score;
     }
 
-    public void setScore(String score) {
+    public void setScore(Calificacion score) {
         this.score = score;
     }
 

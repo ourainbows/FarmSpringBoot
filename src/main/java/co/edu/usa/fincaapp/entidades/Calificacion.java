@@ -26,12 +26,12 @@ public class Calificacion implements Serializable {
     @Column(name="text", length = 250)
     private String text;
 
-
+/* 
     @ManyToOne
     @JoinColumn(name = "reservation")
     @JsonIgnoreProperties("score")
     public Reserva reservation;
-
+ */
     
     public Long getId() {
         return id;

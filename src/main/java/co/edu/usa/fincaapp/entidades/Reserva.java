@@ -1,6 +1,8 @@
 package co.edu.usa.fincaapp.entidades;
 
 import java.io.Serializable;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -25,11 +27,12 @@ public class Reserva implements Serializable {
     private Long id;
 
     @Column(name="startDate")
-    private String startDate;
+    private Date startDate;
     @Column(name="devolutionDate")
-    private String devolutionDate;
+    private Date devolutionDate;
   
     // Status -> Created
+    private String status = "created";
 
     @ManyToOne
     @JoinColumn(name = "farm")
@@ -42,11 +45,12 @@ public class Reserva implements Serializable {
     @JsonIgnoreProperties({ ("reservations"), ("messages") })
     public Cliente client;
 
-
-    @OneToMany(cascade = { CascadeType.PERSIST }, mappedBy = "reservation")
+    private String score; 
+/*     @OneToMany(cascade = { CascadeType.PERSIST }, mappedBy = "reservation")
     @JsonIgnoreProperties("reservation")
     public Set<Calificacion> score; 
- 
+  */
+   
 
     public Long getId() {
         return id;
@@ -56,20 +60,37 @@ public class Reserva implements Serializable {
         this.id = id;
     }
 
-    public String getStartDate() {
+
+    public Date getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(String startDate) {
+    public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
 
-    public String getDevolutionDate() {
+    public Date getDevolutionDate() {
         return devolutionDate;
     }
 
-    public void setDevolutionDate(String endDate) {
-        this.devolutionDate = endDate;
+    public void setDevolutionDate(Date devolutionDate) {
+        this.devolutionDate = devolutionDate;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getScore() {
+        return score;
+    }
+
+    public void setScore(String score) {
+        this.score = score;
     }
 
     public Finca getFarm() {
@@ -88,11 +109,11 @@ public class Reserva implements Serializable {
         this.client = client;
     }
 
-    public Set<Calificacion> getScore() {
+/*     public Set<Calificacion> getScore() {
         return score;
     }
 
     public void setScore(Set<Calificacion> score) {
         this.score = score;
-    }
+    } */
 }

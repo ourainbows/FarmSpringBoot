@@ -41,13 +41,10 @@ public class Reserva implements Serializable {
     @JsonIgnoreProperties({"reservations","messages"})
     public Cliente client;
 
-    /*    private String score;  */
  
     @OneToOne(mappedBy = "reserva")
-    //@JsonIgnoreProperties("reservation")
-    public Calificacion score;
-   
 
+    public Calificacion score;
 
 
     public Long getIdReservation() {

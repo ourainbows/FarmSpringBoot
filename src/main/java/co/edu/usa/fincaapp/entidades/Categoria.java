@@ -18,6 +18,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Table(name="categorias")
 public class Categoria implements Serializable{
     @Id
+    //nullable = false
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -29,7 +30,7 @@ public class Categoria implements Serializable{
     
     @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "category")
     @JsonIgnoreProperties("category")
-    public List<Finca> farms;
+    private List<Finca> farms;
 
     public Long getId() {
         return id;

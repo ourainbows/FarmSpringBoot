@@ -27,7 +27,7 @@ public class ClienteServicio {
         // Comprobamos que no tengamos un objeto vacio
         if (cliente != null) {
             // En caso de que nos hayan pasado un objeto sin id
-            if (cliente.getIdClient() != null) {
+            if (cliente.getIdClient() == null) {
                 return clienteRepositorio.guardarCliente(cliente);
             } else {
                 // Consultamos si tenemos un objeto con ese id en la base de datos

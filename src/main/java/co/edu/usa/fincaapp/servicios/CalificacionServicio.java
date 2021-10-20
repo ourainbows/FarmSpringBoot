@@ -26,7 +26,7 @@ public class CalificacionServicio {
         // Comprobamos que no tengamos un objeto vacio
         if (calificacion != null) {
             // En caso de que nos hayan pasado un objeto sin id
-            if (calificacion.getId() != null) {
+            if (calificacion.getId() == null) {
                 return calificacionRepositorio.guardarCalificacion(calificacion);
             }else{
                 // Consultamos si tenemos un objeto con ese id en la base de datos

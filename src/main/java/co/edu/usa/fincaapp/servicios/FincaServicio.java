@@ -26,7 +26,7 @@ public class FincaServicio {
         // Comprobamos que no tengamos un objeto vacio
         if (finca != null) {
             // En caso de que nos hayan pasado un objeto sin id
-            if (finca.getId() != null) {
+            if (finca.getId() == null) {
                 return fincaRepositorio.guardarFinca(finca);
             } else {
                 // Consultamos si tenemos un objeto con ese id en la base de datos

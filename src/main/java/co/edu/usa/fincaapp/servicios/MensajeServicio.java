@@ -26,7 +26,7 @@ public class MensajeServicio {
         // Comprobamos que no tengamos un objeto vacio
         if (mensaje != null) {
             // En caso de que nos hayan pasado un objeto sin id
-            if (mensaje.getIdMessage() != null) {
+            if (mensaje.getIdMessage() == null) {
                 return mensajeRepositorio.guardarMensaje(mensaje);
             } else {
                 // Consultamos si tenemos un objeto con ese id en la base de datos

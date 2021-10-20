@@ -26,7 +26,7 @@ public class ReservaServicio {
         // Comprobamos que no tengamos un objeto vacio
         if (reserva != null) {
             // En caso de que nos hayan pasado un objeto sin id
-            if (reserva.getIdReservation() != null) {
+            if (reserva.getIdReservation() == null) {
                 return reservaRepositorio.guardarReserva(reserva);
             } else {
                 // Consultamos si tenemos un objeto con ese id en la base de datos

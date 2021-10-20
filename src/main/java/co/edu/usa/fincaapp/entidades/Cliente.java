@@ -19,9 +19,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class Cliente implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    // *********
     private Long idClient;
-    // **********
     @Column(name = "email", length = 45)
     private String email;
     @Column(name = "password", length = 45)
@@ -31,6 +29,7 @@ public class Cliente implements Serializable {
     @Column
     private Integer age;
     
+
     @OneToMany(cascade = { CascadeType.PERSIST }, mappedBy = "client")
     @JsonIgnoreProperties("client")
     //@JsonIgnoreProperties({("client"),("reservations")})
@@ -40,6 +39,7 @@ public class Cliente implements Serializable {
     @JsonIgnoreProperties("client")
     private List<Reserva> reservations;
 
+    
     public Long getIdClient() {
         return idClient;
     }

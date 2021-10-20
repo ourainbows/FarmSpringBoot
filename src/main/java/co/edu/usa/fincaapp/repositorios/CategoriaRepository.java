@@ -17,11 +17,11 @@ public class CategoriaRepository {
         return (List<Categoria>) categoriaRespositorio.findAll();
     }
 
-    public Optional<Categoria> getCategoriaporId(Long id) {
+    public Optional<Categoria> getCategoriaPorId(Long id) {
         return categoriaRespositorio.findById(id);
     }
     
-    public Categoria guardaCategoria(Categoria categoria) {
+    public Categoria guardarCategoria(Categoria categoria) {
         return categoriaRespositorio.save(categoria);
     }
 

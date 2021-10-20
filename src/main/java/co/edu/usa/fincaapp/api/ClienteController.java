@@ -21,12 +21,12 @@ public class ClienteController {
     
     @GetMapping("/all")
     public List<Cliente> getCliente() {
-        return clienteServicio.obtenerTodoClientes();
+        return clienteServicio.getClients();
     }
 
     @PostMapping("/save")
     @ResponseStatus(code = HttpStatus.CREATED)
     public Cliente saveCliente(@RequestBody Cliente cliente) {
-        return clienteServicio.guardar(cliente);
+        return clienteServicio.saveClient(cliente);
     }
 }

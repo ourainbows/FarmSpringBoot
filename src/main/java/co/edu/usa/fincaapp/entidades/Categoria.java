@@ -23,12 +23,7 @@ public class Categoria implements Serializable{
 
     @Column(name="name",length = 45)
     private String name;
-    public List<Finca> getFarms() {
-        return farms;
-    }
-    public void setFarms(List<Finca> farms) {
-        this.farms = farms;
-    }
+
     @Column(name ="description", length = 250)
     private String description; 
     
@@ -54,5 +49,10 @@ public class Categoria implements Serializable{
     public void setDescription(String descripcion) {
         this.description = descripcion;
     }
-    
+    public List<Finca> getFarms() {
+        return farms;
+    }
+    public void setFarms(List<Finca> farms) {
+        this.farms = farms;
+    }
 }

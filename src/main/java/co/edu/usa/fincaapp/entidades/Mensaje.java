@@ -26,13 +26,11 @@ public class Mensaje implements Serializable {
     @ManyToOne
     @JoinColumn(name = "farm")
     @JsonIgnoreProperties({ "messages", "client", "reservations" })
-    //@JsonIgnoreProperties({ ("messages"), ("reservations") })
     private Finca farm;
-// ***************************
+
     @ManyToOne
     @JoinColumn(name = "client")
     @JsonIgnoreProperties({ "messages", "reservations", "client" })
-    //@JsonIgnoreProperties({("messages"), ("reservations") })
     private Cliente client;
 
     public Cliente getClient() {

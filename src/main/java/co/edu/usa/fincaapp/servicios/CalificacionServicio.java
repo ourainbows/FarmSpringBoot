@@ -61,6 +61,7 @@ public class CalificacionServicio {
                 if (score.getReserva() != null) {
                     oCalificacion.get().setReserva(score.getReserva());
                 }
+                // Actualizamos la informacion
                 calificacionRepositorio.guardarCalificacion(oCalificacion.get());
                 return oCalificacion.get();
             } else {

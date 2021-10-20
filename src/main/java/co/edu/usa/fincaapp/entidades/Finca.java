@@ -37,11 +37,11 @@ public class Finca implements Serializable{
     private Categoria category;
 
     @OneToMany(cascade = { CascadeType.PERSIST }, mappedBy = "farm")
-    @JsonIgnoreProperties("farm")
+    @JsonIgnoreProperties({ "farm", "client" })
     public List<Mensaje> messages;
 
     @OneToMany(cascade = { CascadeType.PERSIST }, mappedBy = "farm")
-    @JsonIgnoreProperties("farm")
+    @JsonIgnoreProperties({"farm", "client"})
     public List<Reserva> reservations;
    
     public Long getId() {

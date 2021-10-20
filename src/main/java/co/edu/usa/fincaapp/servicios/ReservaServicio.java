@@ -24,8 +24,8 @@ public class ReservaServicio {
 
     public Reserva saveReservation(Reserva reserva) {
         if (reserva != null) {             
-            if (reserva.getId() != null) {
-                Optional<Reserva> oReserva = reservaRepositorio.getReservaPorId(reserva.getId());
+            if (reserva.getIdReservation() != null) {
+                Optional<Reserva> oReserva = reservaRepositorio.getReservaPorId(reserva.getIdReservation());
                 if (oReserva.isEmpty()) {
                     return reservaRepositorio.guardarReserva(reserva);
                 } else {

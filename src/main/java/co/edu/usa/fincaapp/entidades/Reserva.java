@@ -1,12 +1,8 @@
 package co.edu.usa.fincaapp.entidades;
 
 import java.io.Serializable;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
-import java.util.List;
-import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,7 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -25,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class Reserva implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idReservation;
 
     @Column(name="startDate")
     private Date startDate;
@@ -43,7 +38,7 @@ public class Reserva implements Serializable {
     
     @ManyToOne
     @JoinColumn(name = "client")
-    @JsonIgnoreProperties({ ("reservations"), ("messages") })
+    @JsonIgnoreProperties({"reservations","messages"})
     public Cliente client;
 
     /*    private String score;  */
@@ -53,14 +48,15 @@ public class Reserva implements Serializable {
     public Calificacion score;
    
 
-    public Long getId() {
-        return id;
+
+
+    public Long getIdReservation() {
+        return idReservation;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setIdReservation(Long idReservation) {
+        this.idReservation = idReservation;
     }
-
 
     public Date getStartDate() {
         return startDate;

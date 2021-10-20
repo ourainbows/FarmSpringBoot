@@ -31,6 +31,6 @@ public class AdministradorController {
     public Administrador saveAdmin(@RequestBody Administrador administrador) {
         return administradorServicio.saveAdmnin(administrador);
     }
-
+// @ResponseStatus(code = HttpStatus.NO_CONTENT)
 
 }

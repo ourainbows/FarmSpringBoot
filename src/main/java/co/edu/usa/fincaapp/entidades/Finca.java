@@ -16,10 +16,14 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@Entity
+/**
+ * Clase para crear un objeto de tipo Finca
+ */
+@Entity 
 @Table(name="fincas")
-public class Finca implements Serializable{
-    @Id
+public class Finca implements Serializable {
+    // Indicamos cuales seran las columnas
+    @Id // Primary Key
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "name", length = 45)
@@ -31,6 +35,8 @@ public class Finca implements Serializable{
     @Column(name = "description", length = 250)
     private String description;
 
+
+    // Relaciones que tendra nuestra tabla con otras tablas 
     @ManyToOne
     @JoinColumn(name="category")
     @JsonIgnoreProperties("farms")
@@ -44,6 +50,9 @@ public class Finca implements Serializable{
     @JsonIgnoreProperties({"farm", "client"})
     public List<Reserva> reservations;
    
+
+    // Getters & Setters
+
     public Long getId() {
         return id;
     }
@@ -92,7 +101,4 @@ public class Finca implements Serializable{
     public void setDescription(String description) {
         this.description = description;
     }
-
-
-
 }

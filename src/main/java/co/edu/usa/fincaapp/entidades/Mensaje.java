@@ -13,6 +13,9 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+/**
+ * Objeto mensaje, un cliente puede dejar un mensaje de una finca en particular
+ */
 @Entity
 @Table(name="mensajes")
 public class Mensaje implements Serializable {

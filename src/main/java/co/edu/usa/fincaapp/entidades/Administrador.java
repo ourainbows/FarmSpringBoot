@@ -11,10 +11,13 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "administrador")
+/**
+ * Creamos un objeto administrador
+ */
 public class Administrador implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id; //Primary Key
     
     @Column(name = "name", length = 250)
     private String name;
@@ -23,7 +26,8 @@ public class Administrador implements Serializable {
     @Column(name = "password", length = 45)
     private String password;
 
-    
+
+    //Getters & Setters
     public Long getId() {
         return id;
     }

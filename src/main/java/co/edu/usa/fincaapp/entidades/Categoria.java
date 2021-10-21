@@ -18,20 +18,21 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Table(name="categorias")
 public class Categoria implements Serializable{
     @Id
-    //nullable = false
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id; //Primary key
 
     @Column(name="name",length = 45)
     private String name;
 
     @Column(name ="description", length = 250)
-    private String description; 
+    private String description;
     
+    //Relacion con el objeto farm
     @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "category")
     @JsonIgnoreProperties("category")
     private List<Finca> farms;
 
+    // Getters & Setters
     public Long getId() {
         return id;
     }

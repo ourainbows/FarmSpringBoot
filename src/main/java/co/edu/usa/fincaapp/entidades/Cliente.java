@@ -14,12 +14,15 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+/**
+ * Objeto cliente
+ */
 @Entity
 @Table(name="clientes")
 public class Cliente implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idClient;
+    private Long idClient; //Primary Key
     @Column(name = "email", length = 45)
     private String email;
     @Column(name = "password")
@@ -29,17 +32,18 @@ public class Cliente implements Serializable {
     @Column
     private Integer age;
     
-
+    // relacion con mensajes
     @OneToMany(cascade = { CascadeType.PERSIST }, mappedBy = "client")
     @JsonIgnoreProperties("client")
     //@JsonIgnoreProperties({("client"),("reservations")})
     private List<Mensaje> messages;
 
+    //relacion con reservaciones
     @OneToMany(cascade = { CascadeType.PERSIST }, mappedBy = "client")
     @JsonIgnoreProperties("client")
     private List<Reserva> reservations;
 
-    
+    // Getters & Setters
     public Long getIdClient() {
         return idClient;
     }

@@ -14,25 +14,28 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name="calificacion")
+@Table(name = "calificacion")
+/**
+ * Creamos un objeto calificacion, estas calificaciones se le dan a una reservacion
+ */
 public class Calificacion implements Serializable {
-    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id; //Primary Key
     
     @Column(name="score")
     private Integer score;
     @Column(name="text", length = 250)
     private String text;
 
-
+    //Relaciones con el objeto reserva
     @OneToOne(cascade = CascadeType.ALL )
     @JoinColumn(name = "reserva", referencedColumnName = "idReservation")
     //@JsonIgnoreProperties("score")
     private Reserva reserva;
 
 
+    // Getters & Setters
     public Reserva getReserva() {
         return reserva;
     }

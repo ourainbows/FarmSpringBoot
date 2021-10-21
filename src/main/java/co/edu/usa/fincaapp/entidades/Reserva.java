@@ -17,6 +17,9 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "reservas")
+/**
+ * Objeto Reserva en el cual guardamos las reservaciones que se le hacen a las fincas
+ */
 public class Reserva implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,23 +33,24 @@ public class Reserva implements Serializable {
     // Status -> Created
     private String status = "created";
 
+    // relacion con farm
     @ManyToOne
     @JoinColumn(name = "farm")
     @JsonIgnoreProperties("reservations") 
     private Finca farm;
 
-    
+    // relacion con el objeto cliente
     @ManyToOne
     @JoinColumn(name = "client")
     @JsonIgnoreProperties({"reservations","messages"})
     public Cliente client;
 
- 
+    // Relacion de uno a uno con el objeto score que es el puntaje que se le da a una reservacion
     @OneToOne(mappedBy = "reserva")
-
     public Calificacion score;
 
 
+    // Getters & Setters
     public Long getIdReservation() {
         return idReservation;
     }

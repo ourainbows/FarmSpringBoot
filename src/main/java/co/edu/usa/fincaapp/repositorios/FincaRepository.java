@@ -8,20 +8,44 @@ import org.springframework.stereotype.Repository;
 
 import co.edu.usa.fincaapp.entidades.Finca;
 
+/**
+ * Creamos el CRUD
+ */
 @Repository
 public class FincaRepository {
     @Autowired 
     private FincaCrudRepository fincaRepoitorio;
 
-    public Optional<Finca> getFincaPorId(Long idFinca){
-         return  fincaRepoitorio.findById(idFinca);
+    /**
+     * GET
+     * @return
+     */
+    public List<Finca> getFincas() {
+        return (List<Finca>) fincaRepoitorio.findAll();
     }
-    public List<Finca> getFincas(){
-        return (List<Finca>)fincaRepoitorio.findAll();
+    
+    /**
+     * GET BY ID
+     * @param idFinca
+     * @return
+     */
+    public Optional<Finca> getFincaPorId(Long idFinca) {
+        return fincaRepoitorio.findById(idFinca);
     }
-    public Finca guardarFinca(Finca finca){
+    
+    /**
+     * CREATE - UPDATE
+     * @param finca
+     * @return
+     */
+    public Finca guardarFinca(Finca finca) {
         return fincaRepoitorio.save(finca);
     }
+    
+    /**
+     * DELETE
+     * @param finca
+     */
     public void borrarFinca(Finca finca){
         fincaRepoitorio.delete(finca);
     }

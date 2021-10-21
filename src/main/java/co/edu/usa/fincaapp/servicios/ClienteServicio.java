@@ -57,9 +57,6 @@ public class ClienteServicio {
                 if (cliente.getName() != null) {
                     oCliente.get().setName(cliente.getName());
                 }
-                if (cliente.getEmail() != null) {
-                    oCliente.get().setEmail(cliente.getEmail());
-                }
                 if (cliente.getPassword() != null) {
                     oCliente.get().setPassword(cliente.getPassword());
                 }

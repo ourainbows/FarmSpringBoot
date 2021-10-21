@@ -22,7 +22,7 @@ public class Cliente implements Serializable {
     private Long idClient;
     @Column(name = "email", length = 45)
     private String email;
-    @Column(name = "password", length = 45)
+    @Column(name = "password")
     private String password;
     @Column(name = "name", length = 250)
     private String name;

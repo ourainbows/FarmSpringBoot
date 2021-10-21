@@ -19,23 +19,40 @@ import org.springframework.web.bind.annotation.RestController;
 import co.edu.usa.fincaapp.entidades.Reserva;
 import co.edu.usa.fincaapp.servicios.ReservaServicio;
 
+/**
+ * Controlador de la reserva
+ */
 @RestController
 @RequestMapping("/api/Reservation")
 @CrossOrigin(origins = "*")
-
 public class ReservaController {
+    // Servicio de la reserva
     @Autowired private ReservaServicio reservaServicio;
     
+    /**
+     * Obtenemos las reservas 
+     * @return las reservas y sus datos
+     */
     @GetMapping("/all")
     public List<Reserva> getReserva() {
         return reservaServicio.getAllReservation();
     }
     
+    /**
+     * Obtenemos una reservacion a partir de su id
+     * @param reservaId -> el id de la reserva a consultar
+     * @return la reserva y todos sus datos
+     */
     @GetMapping("/{id}")
     public Optional<Reserva> getReservaId(@PathVariable("id") Long reservaId) {
         return reservaServicio.getReservationById(reservaId);
     }
 
+    /**
+     * Creamos una nueva reservacion
+     * @param reserva -> los datos de la nueva reservacion
+     * @return la reserva creada
+     */
     @PostMapping("/save")
     @ResponseStatus(code = HttpStatus.CREATED)
     //@ResponseStatus(HttpStatus.CREATED)
@@ -43,12 +60,22 @@ public class ReservaController {
         return reservaServicio.saveReservation(reserva);
     }
     
+    /**
+     * Actualizamos una reserva
+     * @param reserva -> el id de la reserva y los datos que vamos a actualizar
+     * @return la reserva actualizada
+     */
     @PutMapping("/update")
     @ResponseStatus(code = HttpStatus.CREATED)
     public Reserva updateReserva(@RequestBody Reserva reserva) {
         return reservaServicio.updateReservation(reserva);
     }
 
+    /**
+     * Borramos una reserva mediante su id
+     * @param reservaId -> el id de la reserva quer vamos a borrar
+     * @return la reserva borrada
+     */
     @DeleteMapping("/{id}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     public boolean deleteReserva(@PathVariable("id") Long reservaId) {

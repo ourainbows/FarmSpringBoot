@@ -38,6 +38,12 @@ public class CalificacionController {
     public List<Calificacion> getCalificacion() {
         return calificacionServicio.getScore();
     }
+    
+    @GetMapping("/{id}")
+    public Optional<Calificacion> getCalificacionId(@PathVariable("id") Long CalificacionId) {
+        return calificacionServicio.getScoreById(CalificacionId);
+    }
+
     /**
      * Guardamos una calificacion
      * @param calificacion -> calificacion reserva

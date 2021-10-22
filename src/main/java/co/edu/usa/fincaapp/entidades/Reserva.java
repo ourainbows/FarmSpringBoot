@@ -46,7 +46,7 @@ public class Reserva implements Serializable {
     public Cliente client;
 
     // Relacion de uno a uno con el objeto score que es el puntaje que se le da a una reservacion
-    @OneToOne(mappedBy = "reserva")
+    @OneToOne(mappedBy = "reservation")
     public Calificacion score;
 
 

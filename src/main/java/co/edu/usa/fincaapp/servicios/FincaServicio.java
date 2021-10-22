@@ -65,6 +65,9 @@ public class FincaServicio {
                 if (finca.getDescription() != null) {
                     oFinca.get().setDescription(finca.getDescription());
                 }
+                if (finca.getCategory() != null) {
+                    oFinca.get().setCategory(finca.getCategory());
+                }
                 // Actualizamos la informacion
                 fincaRepositorio.guardarFinca(oFinca.get());
                 return oFinca.get();

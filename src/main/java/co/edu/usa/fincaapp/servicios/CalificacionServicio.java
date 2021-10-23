@@ -58,8 +58,8 @@ public class CalificacionServicio {
                 if (score.getText() != null) {
                     oCalificacion.get().setText(score.getText());
                 }
-                if (score.getReservation() != null) {
-                    oCalificacion.get().setReservation(score.getReservation());
+                if (score.getIdReservation() != null) {
+                    oCalificacion.get().setIdReservation(score.getIdReservation());
                 }
                 // Actualizamos la informacion
                 calificacionRepositorio.guardarCalificacion(oCalificacion.get());

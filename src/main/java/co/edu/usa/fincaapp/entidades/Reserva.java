@@ -3,6 +3,7 @@ package co.edu.usa.fincaapp.entidades;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -46,7 +47,7 @@ public class Reserva implements Serializable {
     public Cliente client;
 
     // Relacion de uno a uno con el objeto score que es el puntaje que se le da a una reservacion
-    @OneToOne(mappedBy = "idReservation")
+    @OneToOne(mappedBy = "idReservation",cascade =  CascadeType.ALL)
     public Calificacion score;
 
 

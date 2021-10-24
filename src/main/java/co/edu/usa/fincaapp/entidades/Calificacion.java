@@ -30,8 +30,7 @@ public class Calificacion implements Serializable {
 
     //Relaciones con el objeto reserva
     @OneToOne(cascade = CascadeType.ALL )
-    @JoinColumn(name = "idReservation", referencedColumnName = "idReservation")
-    //@JsonIgnoreProperties("score")
+    @JoinColumn(name = "idReservation")
     private Reserva idReservation;
 
 

@@ -3,30 +3,184 @@
     <head>
         <meta charset="UTF-8"/>
         <meta name="description" content="IE=edge"/>
-        <meta name="robots" content="index,follow"/>
-        <title></title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>TuFincaYa!</title>
         <base href="/"/>
         <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
-        <!-- <script type="text/javascript" src="/webjars/jquery/3.6.0/jquery.min.js"></script> -->
-        <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
-        <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+        <link rel="shortcut icon" href="/assets/favicon-32x32.png" type="image/x-icon">
+        <link rel="stylesheet" href="/css/style.css">
     </head>
     <body>
-    <h1>#MisionTic 2022</h1>
-    <div class="container unauthenticated">
-        Para inciar sesión con Github: <a href="/oauth2/authorization/github">Click aqui</a>
-    </div>
-    <div class="container authenticated" style="display: none">
-        Autenticado como <span id="user"> </span>
-    </div>
-    </body>
+         <h1>Farm TIC</h1>
+        <div class="container unauthenticated">
+            Para inciar sesión con Github: <a href="/oauth2/authorization/github">Click aqui</a>
+        </div>
+        <div class="container authenticated" style="display: none">
+            Autenticado como <span id="user"> </span>
+        </div>
+        <div id="Tables">
+            <div id="Farms">
+                <h2>Fincas</h2>
+                <div>
+                    <label>ID</label>
+                    <input type="number" id="idFarm"><br>
+                    <label>Nombre</label>
+                    <input type="text" id="nameFarm"><br>
+                    <label>Direccion</label>
+                    <input type="text" id="addressFarm"><br>
+                    <label>Extension</label>
+                    <input type="number"  id="extensionFarm"><br>
+                    <label>Descripcion</label>
+                    <input id="descriptionFarm"><br>
+                    <label>Categoria</label>
+                    <input type="hidden" id="idClientFarm">
+                    <select id="categoryFarm">
+                    </select>
+                </div>
+                <button onclick=createFarm()>Crear</button>
+                <button onclick=obtainFarms()>Consultar</button>
+                <button onclick=updateFarm()>Actualizar</button>
+                <button onclick=deleteFarm()>Borrar</button>
+                <div id="getFarm"></div>  
+            </div>  
 
-    <script type="text/javascript">
-        $.get('/user',function(data){
-        $('#user').html(data.name);
-        $('.unauthenticated').hide();
-        $('.authenticated').show();
-    });
-    </script>
+            <div id=Categories>
+                <h2>Categorias</h2>
+                <div>
+                    <label>ID</label>
+                    <input type="number" id="idCategory"><br>
+                    <label>Nombre</label>
+                    <input type="text" id="nameCategory"><br>
+                    <label>Descripcion</label>
+                    <input type="text" id="descriptionCategory"><br>
+                </div>
+                <button onclick=createCategory()>Crear</button>
+                <button onclick=obtainCategories()>Consultar</button>
+                <button onclick=updateCategory()>Actualizar</button>
+                <button onclick=deleteCategory()>Borrar</button>
+                <div id="getCategory"></div>
+            </div>
+
+            <div id="Clients">
+                <h2>Clientes</h2>
+                <div>
+                    <label>ID</label>
+                    <input type="number" id="idClient"><br>
+                    <label>Nombre</label>
+                    <input type="text" id="nameClient"><br>
+                    <label>Correo</label>
+                    <input type="text" id="emailClient"><br>
+                    <label>Edad</label>
+                    <input type="number" id="ageClient"><br>
+                    <label>Contraseña</label>
+                    <input type="password" id="passwordClient">
+                </div>
+                <button onclick=createClient()>Crear</button>
+                <button onclick=obtainClients()>Consultar</button>
+                <button onclick=updateClient()>Actualizar</button>
+                <button onclick=deleteClient()>Borrar</button>
+                <div id="getClient"></div>
+            </div>
+
+            <div id="Messages">
+                <h2>Mensajes</h2>
+                <div>
+                    <label>ID</label>
+                    <input type="number" id="idMessage"><br>
+                    <label>Mensaje</label>
+                    <input id="textMessage"><br>
+                    <label>Finca</label>
+                    <select id="farmMessage">
+                    </select>
+                    
+                </div>
+                <button onclick=createMessage()>Crear</button>
+                <button onclick=obtainMessages()>Consultar</button>
+                <button onclick=updateMessage()>Actualizar</button>
+                <button onclick=deleteMessage()>Borrar</button>
+                <div id="getMessage"></div>
+            </div>
+
+            <div id="Reservations">
+                <h2>Reservaciones</h2>
+                <div>
+                    <label>ID</label>
+                    <input type="number" id="idReservation"><br>
+                    <label>Finca</label>
+                    <select id="farmReserv"></select><br>
+                    <label>Cliente</label>
+                    <select id="clientReserv"></select><br>
+                    <label>Fecha Inicio</label>
+                    <input type="date" id="startReserv"><br>
+                    <label>Fecha Entrega</label>
+                    <input type="date" id="endReserv"><br>
+                </div>
+                <button onclick=createReservation()>Crear</button>
+                <button onclick=obtainReservation()>Consultar</button>
+                <button onclick=updateReservation()>Actualizar</button>
+                <button onclick=deleteReservation()>Borrar</button>
+                <div id="getReservation"></div>
+            </div>
+
+            <div id="Score">
+                <h2>Calificación Reserva</h2>
+                <div>
+                    <label>ID</label>
+                    <input type="number" id="idScore"><br>
+                    <label>Calificacion: </label>
+                    <label>0</label>
+                    <input type="radio" name="point" value="0" checked>
+                    <label>1</label>
+                    <input type="radio" name="point" value="1">
+                    <label>2</label>
+                    <input type="radio" name="point" value="2">
+                    <label>3</label>
+                    <input type="radio" name="point" value="3">
+                    <label>4</label>
+                    <input type="radio" name="point" value="4">
+                    <label>5</label>
+                    <input type="radio" name="point" value="5"><br>
+                    <label>Mensaje</label>
+                    <input type="text" id="messageScore"><br>
+                    <label>Reserva</label>
+                    <select id="reservationScore"></select>
+                </div>
+                <button onclick=createScore()>Crear</button>
+                <button onclick=obtainScore()>Consultar</button>
+                <button onclick=updateScore()>Actualizar</button>
+                <div id="getScore"></div>
+            </div>
+
+            <div id="Admin">
+                <h2>Administradores</h2>
+                <div>
+                    <label>ID</label>
+                    <input type="number" id="idAdmin"><br>
+                    <label>Nombre</label>
+                    <input type="text" id="nameAdmin"><br>
+                    <label>Correo</label>
+                    <input type="text" id="emailAdmin"><br>
+                    <label>Contraseña</label>
+                    <input type="password" id="passwordAdmin">
+                </div>
+                <button onclick=createAdmin()>Crear</button>
+                <button onclick=obtainAdmins()>Consultar</button>
+                <button onclick=updateAdmin()>Actualizar</button>
+                <button onclick=deleteAdmin()>Borrar</button>
+                <div id="getAdmin"></div>
+            </div>
+        </div>
+    </body>
+    
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/js/login.js"></script>
+    <script src="/js/admin.js"></script>
+    <script src="/js/category.js"></script>
+    <script src="/js/client.js"></script>
+    <script src="/js/farm.js"></script>
+    <script src="/js/message.js"></script>
+    <script src="/js/reservation.js"></script>
+    <script src="/js/score.js"></script>
 </html>

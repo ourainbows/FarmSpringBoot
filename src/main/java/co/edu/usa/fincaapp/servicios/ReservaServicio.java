@@ -86,6 +86,12 @@ public class ReservaServicio {// Esta clase sera una entidad
                 if (reserva.getDevolutionDate() != null) {
                     oReserva.get().setDevolutionDate(reserva.getDevolutionDate());
                 }
+                if (reserva.getScore() != null) {
+                    oReserva.get().setScore(reserva.getScore());
+                }
+                if (reserva.getStatus() != null) {
+                    oReserva.get().setStatus(reserva.getStatus());
+                }
                 // Actualizamos la informacion
                 reservaRepositorio.guardarReserva(oReserva.get());
                 return oReserva.get();

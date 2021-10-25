@@ -30,8 +30,8 @@ public class Calificacion implements Serializable {
 
     //Relaciones con el objeto reserva
     @OneToOne(cascade = CascadeType.ALL )
-    @JoinColumn(name = "idReservation")
-    private Reserva idReservation;
+    @JoinColumn(name = "id_Reservation", referencedColumnName = "idReservation")
+    private Reserva reservation;
 
 
     // Getters & Setters
@@ -39,19 +39,14 @@ public class Calificacion implements Serializable {
     public Long getId() {
         return id;
     }
+	public Reserva getReservation() {
+        return reservation;
+    }
+    public void setReservation(Reserva reservation) {
+        this.reservation = reservation;
+    }
 
-	
-	public Reserva getIdReservation() {
-		return idReservation;
-	}
-
-
-	public void setIdReservation(Reserva idReservation) {
-		this.idReservation = idReservation;
-	}
-
-
-	public void setId(Long id) {
+    public void setId(Long id) {
         this.id = id;
     }
     public Integer getScore() {

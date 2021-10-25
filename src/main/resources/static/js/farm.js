@@ -5,6 +5,7 @@ function obtainFarms() {
         type: "GET",
         dataType: "json",
         success: function (answer) {
+            
             $("#idFarm").val("")
             $("#nameFarm").val("")
             $("#addressFarm").val("")

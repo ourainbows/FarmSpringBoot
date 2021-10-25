@@ -3,7 +3,6 @@ package co.edu.usa.fincaapp.entidades;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -44,12 +43,11 @@ public class Reserva implements Serializable {
     @ManyToOne
     @JoinColumn(name = "client")
     @JsonIgnoreProperties({"reservations","messages"})
-    public Cliente client;
+    private Cliente client;
 
     // Relacion de uno a uno con el objeto score que es el puntaje que se le da a una reservacion
-    @OneToOne(mappedBy = "idReservation",cascade =  CascadeType.ALL)
-    public Calificacion score;
-
+    //@OneToOne(mappedBy = "reservation")
+    private Integer score;
 
     // Getters & Setters
     public Long getIdReservation() {
@@ -84,11 +82,11 @@ public class Reserva implements Serializable {
         this.status = status;
     }
 
-    public Calificacion getScore() {
+    public Integer getScore() {
         return score;
     }
 
-    public void setScore(Calificacion score) {
+    public void setScore(Integer score) {
         this.score = score;
     }
 

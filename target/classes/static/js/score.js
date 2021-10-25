@@ -24,13 +24,9 @@ function drawScore(items) {
 }
 
 function createScore() {
-/*     let reserva = {
-        idReservation: $("#reservationScore").val()
-    } */
     let myData = {
         text: $("#messageScore").val(),
         score: $("input[type='radio'][name='point']:checked").val(),
-        //idReservation: reserva
     }
     console.log(myData)
     $.ajax({
@@ -45,14 +41,10 @@ function createScore() {
 }
 
 function updateScore() {
-/*     let reserva = {
-        idReservation: $("#reservationScore")
-    } */
     let myData = {
         id: $("idScore"),
         text: $("#messageScore").val(),
         score: $("input[type='radio'][name='point']:checked").val(),
-        //reservations: reserva
     }
     $.ajax({
        url:"http://localhost:8080/api/Score/update",

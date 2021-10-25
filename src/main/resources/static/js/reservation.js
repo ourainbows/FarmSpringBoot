@@ -37,6 +37,7 @@ function createReservation() {
         devolutionDate: $("#endReserv").val(),
         client: cliente,
         farm: finca,
+        score: $("input[type='radio'][name='point']:checked").val(),
     }
     console.log(myData)
     $.ajax({

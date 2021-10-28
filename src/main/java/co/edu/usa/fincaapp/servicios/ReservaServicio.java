@@ -1,5 +1,10 @@
 package co.edu.usa.fincaapp.servicios;
 
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -7,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import co.edu.usa.fincaapp.entidades.Reserva;
+import co.edu.usa.fincaapp.reportes.ContadorClientes;
+import co.edu.usa.fincaapp.reportes.StatusReservas;
 import co.edu.usa.fincaapp.repositorios.ReservaRepository;
 
 /**
@@ -114,5 +121,34 @@ public class ReservaServicio {// Esta clase sera una entidad
             return true;
         }).orElse(false);
         return borrado;
+    }
+
+    public StatusReservas getReservationStatusReport() {
+        List<Reserva> completed = reservaRepositorio.getReservaByStatus("completed");
+        List<Reserva> cancelled = reservaRepositorio.getReservaByStatus("cancelled");
+        return new StatusReservas(completed.size(), cancelled.size());
+    }
+
+    public List<Reserva> getReservationPeriod(String dateA, String dateB) {
+        SimpleDateFormat parser = new SimpleDateFormat("yyyy-MM-dd");
+        Date aDate = new Date();
+        Date bDate = new Date();
+
+        try {
+            aDate = parser.parse(dateA);
+            bDate = parser.parse(dateB);
+        } catch (ParseException evt) {
+            evt.printStackTrace();
+        }
+        if (aDate.before(bDate)) {
+            return reservaRepositorio.getReservaPeriod(aDate, bDate);
+        } else {
+            return new ArrayList<>();
+        }
+
+    }
+
+    public List<ContadorClientes> getTopClients() {
+        return reservaRepositorio.getTopClients();
     }
 }

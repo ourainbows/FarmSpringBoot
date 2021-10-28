@@ -1,204 +1,326 @@
 <!DOCTYPE html>
 <htmL lang="es">
-    <head>
-        <meta charset="UTF-8"/>
-        <meta name="description" content="IE=edge"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>TuFincaYa!</title>
-        <base href="/"/>
-        <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
-        <link rel="shortcut icon" href="/assets/favicon-32x32.png" type="image/x-icon">
-        <link rel="stylesheet" href="/css/style.css">
-    </head>
-    <body>
-         <h1>Farm TIC</h1>
-        <div class="container unauthenticated">
-            Para inciar sesión con Github: <a href="/oauth2/authorization/github">Click aqui</a>
-        </div>
-        <div class="container authenticated" style="display: none">
-            Autenticado como <span id="user"> </span>
-            <div>
-                <button onClick="logout()" class="btn btn-primary">Logout</button>
-            </div>
-        </div>
-        <div id="Tables">
-            <div id="Farms">
-                <h2>Fincas</h2>
-                <div>
-                    <label>ID</label>
-                    <input type="number" id="idFarm"><br>
-                    <label>Nombre</label>
-                    <input type="text" id="nameFarm"><br>
-                    <label>Direccion</label>
-                    <input type="text" id="addressFarm"><br>
-                    <label>Extension</label>
-                    <input type="number"  id="extensionFarm"><br>
-                    <label>Descripcion</label>
-                    <input id="descriptionFarm"><br>
-                    <label>Categoria</label>
-                    <input type="hidden" id="idClientFarm">
-                    <select id="categoryFarm">
-                    </select>
-                </div>
-                <button onclick=createFarm()>Crear</button>
-                <button onclick=obtainFarms()>Consultar</button>
-                <button onclick=updateFarm()>Actualizar</button>
-                <button onclick=deleteFarm()>Borrar</button>
-                <div id="getFarm"></div>  
-            </div>  
 
-            <div id=Categories>
-                <h2>Categorias</h2>
-                <div>
-                    <label>ID</label>
-                    <input type="number" id="idCategory"><br>
-                    <label>Nombre</label>
-                    <input type="text" id="nameCategory"><br>
-                    <label>Descripcion</label>
-                    <input type="text" id="descriptionCategory"><br>
-                </div>
-                <button onclick=createCategory()>Crear</button>
-                <button onclick=obtainCategories()>Consultar</button>
-                <button onclick=updateCategory()>Actualizar</button>
-                <button onclick=deleteCategory()>Borrar</button>
-                <div id="getCategory"></div>
-            </div>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TuFincaYa!</title>
+    <link rel="shortcut icon" href="/assets/favicon-32x32.png" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
 
-            <div id="Clients">
-                <h2>Clientes</h2>
-                <div>
-                    <label>ID</label>
-                    <input type="number" id="idClient"><br>
-                    <label>Nombre</label>
-                    <input type="text" id="nameClient"><br>
-                    <label>Correo</label>
-                    <input type="text" id="emailClient"><br>
-                    <label>Edad</label>
-                    <input type="number" id="ageClient"><br>
-                    <label>Contraseña</label>
-                    <input type="password" id="passwordClient">
-                </div>
-                <button onclick=createClient()>Crear</button>
-                <button onclick=obtainClients()>Consultar</button>
-                <button onclick=updateClient()>Actualizar</button>
-                <button onclick=deleteClient()>Borrar</button>
-                <div id="getClient"></div>
-            </div>
-
-            <div id="Messages">
-                <h2>Mensajes</h2>
-                <div>
-                    <label>ID</label>
-                    <input type="number" id="idMessage"><br>
-                    <label>Mensaje</label>
-                    <input id="textMessage"><br>
-                    <label>Finca</label>
-                    <select id="farmMessage">
-                    </select>
-                    
-                </div>
-                <button onclick=createMessage()>Crear</button>
-                <button onclick=obtainMessages()>Consultar</button>
-                <button onclick=updateMessage()>Actualizar</button>
-                <button onclick=deleteMessage()>Borrar</button>
-                <div id="getMessage"></div>
-            </div>
-
-            <div id="Reservations">
-                <h2>Reservaciones</h2>
-                <div>
-                    <label>ID</label>
-                    <input type="number" id="idReservation"><br>
-                    <label>Finca</label>
-                    <select id="farmReserv"></select><br>
-                    <label>Cliente</label>
-                    <select id="clientReserv"></select><br>
-                    <label>Fecha Inicio</label>
-                    <input type="date" id="startReserv"><br>
-                    <label>Fecha Entrega</label>
-                    <input type="date" id="endReserv"><br>
-                    <label>Calificacion: </label>
-                    <label>0</label>
-                    <input type="radio" name="point" value="0" checked>
-                    <label>1</label>
-                    <input type="radio" name="point" value="1">
-                    <label>2</label>
-                    <input type="radio" name="point" value="2">
-                    <label>3</label>
-                    <input type="radio" name="point" value="3">
-                    <label>4</label>
-                    <input type="radio" name="point" value="4">
-                    <label>5</label>
-                    <input type="radio" name="point" value="5"><br>
-                </div>
-                <button onclick=createReservation()>Crear</button>
-                <button onclick=obtainReservation()>Consultar</button>
-                <button onclick=updateReservation()>Actualizar</button>
-                <button onclick=deleteReservation()>Borrar</button>
-                <div id="getReservation"></div>
-            </div>
-
-            <!-- <div id="Score">
-                <h2>Calificación Reserva</h2>
-                <div>
-                    <label>ID</label>
-                    <input type="number" id="idScore"><br>
-                    <label>Calificacion: </label>
-                    <label>0</label>
-                    <input type="radio" name="point" value="0" checked>
-                    <label>1</label>
-                    <input type="radio" name="point" value="1">
-                    <label>2</label>
-                    <input type="radio" name="point" value="2">
-                    <label>3</label>
-                    <input type="radio" name="point" value="3">
-                    <label>4</label>
-                    <input type="radio" name="point" value="4">
-                    <label>5</label>
-                    <input type="radio" name="point" value="5"><br>
-                    <label>Mensaje</label>
-                    <input type="text" id="messageScore"><br>
-                    <label>Reserva</label>
-                    <select id="reservationScore"></select>
-                </div>
-                <button onclick=createScore()>Crear</button>
-                <button onclick=obtainScore()>Consultar</button>
-                <button onclick=updateScore()>Actualizar</button>
-                <div id="getScore"></div>
-            </div> -->
-
-            <div id="Admin">
-                <h2>Administradores</h2>
-                <div>
-                    <label>ID</label>
-                    <input type="number" id="idAdmin"><br>
-                    <label>Nombre</label>
-                    <input type="text" id="nameAdmin"><br>
-                    <label>Correo</label>
-                    <input type="text" id="emailAdmin"><br>
-                    <label>Contraseña</label>
-                    <input type="password" id="passwordAdmin">
-                </div>
-                <button onclick=createAdmin()>Crear</button>
-                <button onclick=obtainAdmins()>Consultar</button>
-                <button onclick=updateAdmin()>Actualizar</button>
-                <button onclick=deleteAdmin()>Borrar</button>
-                <div id="getAdmin"></div>
-            </div>
-        </div>
-        
-    </body>
     
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
-    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
-    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="/webjars/js-cookie/js.cookie.js"></script>
-    <script src="/js/login.js"></script>
-    <script src="/js/admin.js"></script>
-    <script src="/js/category.js"></script>
-    <script src="/js/client.js"></script>
-    <script src="/js/farm.js"></script>
-    <script src="/js/message.js"></script>
-    <script src="/js/reservation.js"></script>
-    <script src="/js/score.js"></script>
+</head>
+
+<body>
+    <main>
+        <div class="welcome">
+            <nav class="nav">
+                <div class="container authenticated">
+                    Bienvenido: <i><span id="user"></span></i>
+                </div>
+            </nav>
+            <div class="welcome-main">
+                <p class="welcome-main-subtittle">
+                    El mejor destino para tus vacaciones
+                </p>
+                <h1 class="welcome-main-tittle">Tu Finca Ya!</h1>
+                <div class="container unauthenticated">
+                    <a href="/oauth2/authorization/github">
+                        <input class="btn btn-info" type="button" value="Registrarse">
+                    </a>
+                </div>
+                <div class="container authenticated">
+                    <button onClick="logout()" class="btn btn-info">
+                        Cerrar Sesión
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="tables" class="container authenticated">
+            <i>
+                <h2 class="soy">Soy...</h2>
+            </i>
+            <div class="user">
+                <div id="user-client">
+                    <h2 class="user-client-tittle">Cliente</h2>
+                    <div class="rounded user-client-box">
+                        <div class="user-client-box-input">
+                            <div class="client-input-field">
+                                <input class="form-control" type="text" id="nameClient"
+                                    placeholder="Nombre Completo" /><br />
+                                <input class="form-control" type="email" id="emailClient"
+                                    placeholder="Correo Electronico" /><br />
+                                <input class="form-control" type="number" id="ageClient" placeholder="Edad" /><br />
+                                <input class="form-control" type="password" id="passwordClient"
+                                    placeholder="Contraseña" /><br />
+                                <input class="form-label" type="hidden" id="idClient" /><br />
+                            </div>
+                            <div class="client-input-buttons">
+                                <button class="btn btn-dark" onclick="createClient()">
+                                    Crear</button><br />
+                                <button class="btn btn-dark" onclick="updateClient()">
+                                    Actualizar</button><br />
+                                <button class="btn btn-dark" onclick="deleteClient()">
+                                    Borrar</button><br />
+                            </div>
+                        </div>
+                        <div class="user-client-box-consult">
+                            <div>
+                                <div>Nuestros Clientes</div>
+                                <div id="getClient"></div>
+                            </div>
+                            <div>
+                                <button class="btn btn-info" onclick="obtainClients()">
+                                    Consultar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="user-admin">
+                    <h2 class="user-admin-tittle">Administrador</h2>
+                    <div class="rounded user-admin-box">
+                        <div class="user-admin-box-input">
+                            <div class="admin-input-field">
+                                <input class="form-control" type="text" id="nameAdmin"
+                                    placeholder="Nombre Completo" /><br />
+                                <input class="form-control" type="text" id="emailAdmin"
+                                    placeholder="Correo Electronico" /><br />
+                                <input class="form-control" type="password" id="passwordAdmin"
+                                    placeholder="Contraseña" /><br />
+                                <input class="form-control" type="hidden" id="idAdmin" /><br />
+                            </div>
+                            <div class="admin-input-button">
+                                <button class="btn btn-dark" onclick="createAdmin()">
+                                    Crear</button><br />
+                                <button class="btn btn-dark" onclick="updateAdmin()">
+                                    Actualizar</button><br />
+                                <button class="btn btn-dark" onclick="deleteAdmin()">
+                                    Borrar</button><br />
+                            </div>
+                        </div>
+                        <div class="user-admin-box-consult">
+                            <div>
+                                <div>Nuestros Admins</div>
+                                <div id="getAdmin"></div>
+                            </div>
+                            <div>
+                                <button class="btn btn-info" onclick="obtainAdmins()">
+                                    Consultar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-reserv">
+                <b>Reserva</b> en <i>3 Sencillos pasos:</i>
+            </div>
+            <div class="reserv">
+                <div class="reserv-box" id="Categories">
+                    <div class="reserv-box-main">
+                        <div class="reserv-box-main-blank">
+                            <div class="main-blank-form">
+                                <input class="form-label" type="hidden" id="idCategory" /><br />
+                                <input class="form-control" type="text" id="nameCategory" placeholder="Nombre" /><br />
+                                <textarea class="form-control" type="text" id="descriptionCategory"
+                                    placeholder="Descripción"></textarea><br />
+                            </div>
+                            <div class="main-blank-get">
+                                <div id="getCategory"></div>
+                            </div>
+                        </div>
+                        <div class="reserv-box-main-buttons">
+                            <button class="btn btn-dark" onclick="obtainCategories()">
+                                Consultar
+                            </button>
+                            <button class="btn btn-dark" onclick="updateCategory()">
+                                Actualizar
+                            </button>
+                            <button class="btn btn-dark" onclick="deleteCategory()">
+                                Borrar
+                            </button>
+                        </div>
+                    </div>
+                    <div class="reserv-box-create">
+                        <div><b>Crea una categoria</b></div>
+                        <div>
+                            <button class="btn btn-info" onclick="createCategory()">
+                                Crear
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="reserv-box" id="Farms">
+                    <div class="reserv-box-main">
+                        <div class="reserv-box-main-blank">
+                            <div class="main-blank-form">
+                                <input type="hidden" id="idFarm" /><br />
+                                <input class="form-control" type="text" id="nameFarm" placeholder="Nombre" /><br />
+                                <input class="form-control" type="text" id="addressFarm"
+                                    placeholder="Dirección" /><br />
+                                <input class="form-control" type="number" id="extensionFarm"
+                                    placeholder="Extension" /><br />
+                                <textarea class="form-control" id="descriptionFarm"
+                                    placeholder="Descripción"></textarea><br />
+                                <select class="form-select" id="categoryFarm"></select>
+                            </div>
+                            <div class="main-blank-get">
+                                <div id="getFarm"></div>
+                            </div>
+                        </div>
+                        <div class="reserv-box-main-buttons">
+                            <button class="btn btn-dark" onclick="obtainFarms()">
+                                Consultar
+                            </button>
+                            <button class="btn btn-dark" onclick="updateFarm()">
+                                Actualizar
+                            </button>
+                            <button class="btn btn-dark" onclick="deleteFarm()">
+                                Borrar
+                            </button>
+                        </div>
+                    </div>
+                    <div class="reserv-box-create">
+                        <div><b>Crea una Finca</b></div>
+                        <div>
+                            <button class="btn btn-info" onclick="createFarm()">
+                                Crear
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="reserv-box" id="Reservations">
+                    <div class="reserv-box-main">
+                        <div class="reserv-box-main-blank">
+                            <div class="main-blank-form">
+                                <input type="hidden" id="idReservation" /><br />
+                                <select class="form-select" id="farmReserv"></select><br />
+                                <select class="form-select" id="clientReserv"></select><br />
+                                <label>Fecha Inicio</label>
+                                <input class="form-control" type="date" id="startReserv" /><br />
+                                <label>Fecha Entrega</label>
+                                <input class="form-control" type="date" id="endReserv" /><br />
+                                <label>Calificacion </label><br>
+                                <label>0</label>
+                                <input class="form-check-input" type="radio" name="point" value="0" checked />
+                                <label>1</label>
+                                <input class="form-check-input" type="radio" name="point" value="1" />
+                                <label>2</label>
+                                <input class="form-check-input" type="radio" name="point" value="2" />
+                                <label>3</label>
+                                <input class="form-check-input" type="radio" name="point" value="3" />
+                                <label>4</label>
+                                <input class="form-check-input" type="radio" name="point" value="4" />
+                                <label>5</label>
+                                <input class="form-check-input" type="radio" name="point" value="5" /><br />
+                            </div>
+                            <div class="main-blank-get">
+                                <div id="getReservation"></div>
+                            </div>
+                        </div>
+                        <div class="reserv-box-main-buttons">
+                            <button class="btn btn-dark" onclick="obtainReservation()">
+                                Consultar
+                            </button>
+                            <button class="btn btn-dark" onclick="updateReservation()">
+                                Actualizar
+                            </button>
+                            <button class="btn btn-dark" onclick="deleteReservation()">
+                                Borrar
+                            </button>
+                        </div>
+                    </div>
+                    <div class="reserv-box-create">
+                        <div><b>Reserva!</b></div>
+                        <div>
+                            <button class="btn btn-info" onclick="createReservation()">
+                                Crear
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="msj" id="Messages">
+                <h2>Tu feedback nos importa:</h2>
+                <div class="msj-form">
+                    <input type="hidden" id="idMessage" /><br />
+                    <select class="form-select" id="farmMessage"></select>
+                    <textarea class="form-control" id="textMessage"></textarea><br />
+                </div>
+                <div>
+                    <button class="btn btn-info" onclick="createMessage()">
+                        Enviar
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="stadistics" class="container authenticated">
+            <div class="stadistics-tittle"><b>Nuestros Logros</b></div>
+
+            <div class="stadistics-cards">
+                <div class="card text-white bg-dark mb-3" id="card">
+                    <h5 class="card-tittle">Reservas en el Tiempo</h5>
+                    <div class="card-body">
+                        <div class="card-text">
+                            <input class="form-control" type="date" id="startTimeReserv" />
+                            <input class="form-control" type="date" id="endTimeReserv" />
+                            <button class="btn btn-info" onclick="">
+                                Buscar
+                            </button>
+                        </div>
+                        <div class="countReserv"></div>
+                    </div>
+                </div>
+
+                <div class="card text-white bg-dark mb-3" id="card">
+                    <h5 class="card-tittle">Mejores Clientes</h5>
+                    <div class="card-body">
+                        <div class="best-clients">
+                            <table class="table" id="best-clients-table">
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="card text-white bg-dark mb-3" id="card">
+                    <h5 class="card-tittle">Reservas</h5>
+                    <div class="card-body">
+                        <div class="ReservComplete">
+                            Completadas:
+                        </div>
+                        <div class="ReservCancel">
+                            Canceladas:
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="container authenticated">
+            <div>Made With ❤ by Juan Casas</div>
+        </footer>
+    </main>
+</body>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
+
+<script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/webjars/js-cookie/js.cookie.js"></script>
+<script src="/js/login.js"></script>
+<script src="/js/admin.js"></script>
+<script src="/js/category.js"></script>
+<script src="/js/client.js"></script>
+<script src="/js/farm.js"></script>
+<script src="/js/message.js"></script>
+<script src="/js/reservation.js"></script>
+<script src="/js/score.js"></script>
+
 </html>

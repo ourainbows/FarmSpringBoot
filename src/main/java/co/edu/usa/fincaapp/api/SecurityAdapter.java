@@ -13,7 +13,7 @@ public class SecurityAdapter extends WebSecurityConfigurerAdapter{
     protected void configure(HttpSecurity http) throws Exception {
         http
             .authorizeRequests(
-                a -> a.antMatchers("/", "/error", "/webjars/**").permitAll().anyRequest().authenticated())
+                a -> a.antMatchers("/", "/error", "/webjars/**","/css/**").permitAll().anyRequest().authenticated())
                 
                    .exceptionHandling(
                         e -> e.authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED)))
@@ -24,7 +24,6 @@ public class SecurityAdapter extends WebSecurityConfigurerAdapter{
                     .csrf(c -> c
                         .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()))        
                 .oauth2Login()
-                    .loginPage("/login.html")
                     .defaultSuccessUrl("/", true);
                 
         http.cors().and().csrf().disable();

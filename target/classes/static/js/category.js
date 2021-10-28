@@ -1,18 +1,18 @@
 // id name description
 function obtainCategories() {
     $.ajax({
-        url: "http://localhost:8080/api/Category/all",
-        type: "GET",
-        dataType: "json",
-        success: function (answer) {
-            $("#idCategory").val("")
-            $("#nameCategory").val("")
-            $("#descriptionCategory").val("")
-            $("#getCategory").html("")
-            $("#getCategory").append(drawName(answer))
-            listCategories()
-        }
-    })
+      url: "http://150.230.86.64:81/api/Category/all",
+      type: "GET",
+      dataType: "json",
+      success: function (answer) {
+        $("#idCategory").val("");
+        $("#nameCategory").val("");
+        $("#descriptionCategory").val("");
+        $("#getCategory").html("");
+        $("#getCategory").append(drawName(answer));
+        listCategories();
+      },
+    });
 }
 
 function createCategory() {
@@ -21,14 +21,14 @@ function createCategory() {
         description: $("#descriptionCategory").val()
     }
     $.ajax({
-        url: "http://localhost:8080/api/Category/save",
-        type: "POST",
-        data: JSON.stringify(myData),
-        contentType: "application/JSON",
-        complete: function () {
-            obtainCategories()
-        }
-    })
+      url: "http://150.230.86.64:81/api/Category/save",
+      type: "POST",
+      data: JSON.stringify(myData),
+      contentType: "application/JSON",
+      complete: function () {
+        obtainCategories();
+      },
+    });
 }
 
 function updateCategory() {
@@ -38,15 +38,15 @@ function updateCategory() {
         description: $("#descriptionCategory").val()
     }
     $.ajax({
-        url: "http://localhost:8080/api/Category/update",
-        type: "PUT",
-        data: JSON.stringify(myData),
-        contentType: "application/JSON",
-        dataType: "json",
-        complete: function () {
-            obtainCategories()
-        }
-    })
+      url: "http://150.230.86.64:81/api/Category/update",
+      type: "PUT",
+      data: JSON.stringify(myData),
+      contentType: "application/JSON",
+      dataType: "json",
+      complete: function () {
+        obtainCategories();
+      },
+    });
 }
 
 function deleteCategory() {
@@ -54,14 +54,14 @@ function deleteCategory() {
         id: $("#idCategory").val()
     }
     $.ajax({
-        url: "http://localhost:8080/api/Category/" + $("#idCategory").val(),
-        type:"DELETE",
-        data: JSON.stringify(myData),
-        contentType:"application/JSON",
-        dataType:'json',
-        success:function(){
-            obtainCategories()
-        }
+      url: "http://150.230.86.64:81/api/Category/" + $("#idCategory").val(),
+      type: "DELETE",
+      data: JSON.stringify(myData),
+      contentType: "application/JSON",
+      dataType: "json",
+      success: function () {
+        obtainCategories();
+      },
     });
 }
 
@@ -70,14 +70,14 @@ $(document).on("click", "div ul li", function () {
     // Get Details Farm By ID 
     $("#getCategory ul li").click(function () {
         $.ajax({
-            url:"http://localhost:8080/api/Category/" + $(this).attr("id"),
-            type: "GET",
-            dataType: "json",
-            success: function (answer) {
-                $("#idCategory").val(answer.id)
-                $("#nameCategory").val(answer.name)
-                $("#descriptionCategory").val(answer.description)
-            }
+          url: "http://150.230.86.64:81/api/Category/" + $(this).attr("id"),
+          type: "GET",
+          dataType: "json",
+          success: function (answer) {
+            $("#idCategory").val(answer.id);
+            $("#nameCategory").val(answer.name);
+            $("#descriptionCategory").val(answer.description);
+          },
         });
     })
 })

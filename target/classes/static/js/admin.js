@@ -1,17 +1,17 @@
 // id name email password
 function obtainAdmins() {
     $.ajax({
-       url: "http://localhost:8080/api/Admin/all",
-        type: "GET",
-        dataType: "json",
-        success: function (answer) {
-            $("#idAdmin").val("")
-            $("#nameAdmin").val("")
-            $("#emailAdmin").val("")
-            $("#passwordAdmin").val("")
-            $("#getAdmin").html("")
-            $("#getAdmin").append(drawNameAdmin(answer))
-        }
+      url: "http://150.230.86.64:81/api/Admin/all",
+      type: "GET",
+      dataType: "json",
+      success: function (answer) {
+        $("#idAdmin").val("");
+        $("#nameAdmin").val("");
+        $("#emailAdmin").val("");
+        $("#passwordAdmin").val("");
+        $("#getAdmin").html("");
+        $("#getAdmin").append(drawNameAdmin(answer));
+      },
     });
 }
 
@@ -32,14 +32,14 @@ function createAdmin() {
         password: $("#passwordAdmin").val()
     }
     $.ajax({
-        url: "http://localhost:8080/api/Admin/save",
-        type: "POST",
-        data: JSON.stringify(myData),
-        contentType: "application/JSON",
-        complete: function () {
-            obtainAdmins()
-        }
-    })
+      url: "http://150.230.86.64:81/api/Admin/save",
+      type: "POST",
+      data: JSON.stringify(myData),
+      contentType: "application/JSON",
+      complete: function () {
+        obtainAdmins();
+      },
+    });
 }
 
 function updateAdmin() {
@@ -50,15 +50,15 @@ function updateAdmin() {
         age: $("#ageAdmin").val(),
     }
     $.ajax({
-        url: "http://localhost:8080/api/Admin/update",
-        type: "PUT",
-        data: JSON.stringify(myData),
-        contentType: "application/JSON",
-        dataType: "json",
-        complete: function () {
-            obtainAdmins()
-        }
-    })
+      url: "http://150.230.86.64:81/api/Admin/update",
+      type: "PUT",
+      data: JSON.stringify(myData),
+      contentType: "application/JSON",
+      dataType: "json",
+      complete: function () {
+        obtainAdmins();
+      },
+    });
 }
 
 function deleteAdmin() {
@@ -66,14 +66,14 @@ function deleteAdmin() {
         id: $("#idAdmin").val()
     }
     $.ajax({
-        url: "http://localhost:8080/api/Admin/" +  $("#idAdmin").val(),
-        type:"DELETE",
-        data: JSON.stringify(myData),
-        contentType:"application/JSON",
-        dataType:'json',
-        success:function(){
-            obtainAdmins()
-        }
+      url: "http://150.230.86.64:81/api/Admin/" + $("#idAdmin").val(),
+      type: "DELETE",
+      data: JSON.stringify(myData),
+      contentType: "application/JSON",
+      dataType: "json",
+      success: function () {
+        obtainAdmins();
+      },
     });
 }
 
@@ -83,14 +83,14 @@ function deleteAdmin() {
 $(document).on("click", "div ul li", function () {
     $("#getAdmin ul li").click(function () {
         $.ajax({
-            url:"http://localhost:8080/api/Admin/" + $(this).attr("id"),
-            type: "GET",
-            dataType: "json",
-            success: function (answer) {
-                $("#idAdmin").val(answer.id)
-                $("#nameAdmin").val(answer.name)
-                $("#emailAdmin").val(answer.email)
-            }
+          url: "http://150.230.86.64:81/api/Admin/" + $(this).attr("id"),
+          type: "GET",
+          dataType: "json",
+          success: function (answer) {
+            $("#idAdmin").val(answer.id);
+            $("#nameAdmin").val(answer.name);
+            $("#emailAdmin").val(answer.email);
+          },
         });
     })
 })

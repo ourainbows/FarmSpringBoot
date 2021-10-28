@@ -1,19 +1,19 @@
 // idClient email password name age
 function obtainClients() {
     $.ajax({
-       url: "http://localhost:8080/api/Client/all",
-        type: "GET",
-        dataType: "json",
-        success: function (answer) {
-            $("#idClient").val("")
-            $("#nameClient").val("")
-            $("#emailClient").val("")
-            $("#ageClient").val("")
-            $("#passwordClient").val("")
-            $("#getClient").html("")
-            $("#getClient").append(drawNameClient(answer))
-            listClient() 
-        }
+      url: "http://150.230.86.64:81/api/Client/all",
+      type: "GET",
+      dataType: "json",
+      success: function (answer) {
+        $("#idClient").val("");
+        $("#nameClient").val("");
+        $("#emailClient").val("");
+        $("#ageClient").val("");
+        $("#passwordClient").val("");
+        $("#getClient").html("");
+        $("#getClient").append(drawNameClient(answer));
+        listClient();
+      },
     });
 }
 
@@ -35,14 +35,14 @@ function createClient() {
         password: $("#passwordClient").val()
     }
     $.ajax({
-        url: "http://localhost:8080/api/Client/save",
-        type: "POST",
-        data: JSON.stringify(myData),
-        contentType: "application/JSON",
-        complete: function () {
-            obtainClients()
-        }
-    })
+      url: "http://150.230.86.64:81/api/Client/save",
+      type: "POST",
+      data: JSON.stringify(myData),
+      contentType: "application/JSON",
+      complete: function () {
+        obtainClients();
+      },
+    });
 }
 
 function updateClient() {
@@ -54,15 +54,15 @@ function updateClient() {
         password: $("#passwordClient").val()
     }
     $.ajax({
-        url: "http://localhost:8080/api/Client/update",
-        type: "PUT",
-        data: JSON.stringify(myData),
-        contentType: "application/JSON",
-        dataType: "json",
-        complete: function () {
-            obtainClients()
-        }
-    })
+      url: "http://150.230.86.64:81/api/Client/update",
+      type: "PUT",
+      data: JSON.stringify(myData),
+      contentType: "application/JSON",
+      dataType: "json",
+      complete: function () {
+        obtainClients();
+      },
+    });
 }
 
 function deleteClient() {
@@ -70,14 +70,14 @@ function deleteClient() {
         idClient: $("#idClient").val()
     }
     $.ajax({
-        url: "http://localhost:8080/api/Client/" +  $("#idClient").val(),
-        type:"DELETE",
-        data: JSON.stringify(myData),
-        contentType:"application/JSON",
-        dataType:'json',
-        success:function(){
-            obtainClients()
-        }
+      url: "http://150.230.86.64:81/api/Client/" + $("#idClient").val(),
+      type: "DELETE",
+      data: JSON.stringify(myData),
+      contentType: "application/JSON",
+      dataType: "json",
+      success: function () {
+        obtainClients();
+      },
     });
 }
 
@@ -87,15 +87,15 @@ function deleteClient() {
 $(document).on("click", "div ul li", function () {
     $("#getClient ul li").click(function () {
         $.ajax({
-            url:"http://localhost:8080/api/Client/" + $(this).attr("id"),
-            type: "GET",
-            dataType: "json",
-            success: function (answer) {
-                $("#idClient").val(answer.idClient)
-                $("#nameClient").val(answer.name)
-                $("#emailClient").val(answer.email)
-                $("#ageClient").val(answer.age)
-            }
+          url: "http://150.230.86.64:81/api/Client/" + $(this).attr("id"),
+          type: "GET",
+          dataType: "json",
+          success: function (answer) {
+            $("#idClient").val(answer.idClient);
+            $("#nameClient").val(answer.name);
+            $("#emailClient").val(answer.email);
+            $("#ageClient").val(answer.age);
+          },
         });
     })
 })

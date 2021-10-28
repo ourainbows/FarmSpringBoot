@@ -1,16 +1,16 @@
 // id score text
 function obtainScore() {
     $.ajax({
-        url:"http://localhost:8080/api/Score/all",
-        type: "GET",
-        dataType: "json",
-        success: function (answer) {
-            console.log(answer)
-            $("#messageScore").val("")
-            $("#reservationScore").val("")
-            $("#getScore").html("")
-            $("#getScore").append(drawScore(answer))
-        }
+      url: "http://150.230.86.64:81/api/Score/all",
+      type: "GET",
+      dataType: "json",
+      success: function (answer) {
+        console.log(answer);
+        $("#messageScore").val("");
+        $("#reservationScore").val("");
+        $("#getScore").html("");
+        $("#getScore").append(drawScore(answer));
+      },
     });
 }
 //$("reservationScore").val(answer.reservation["farm"])
@@ -30,14 +30,14 @@ function createScore() {
     }
     console.log(myData)
     $.ajax({
-        url:"http://localhost:8080/api/Score/save",
-        type: "POST",
-        data: JSON.stringify(myData),
-        contentType: "application/JSON",
-        complete: function () {
-            obtainScore()
-        }
-    })
+      url: "http://150.230.86.64:81/api/Score/save",
+      type: "POST",
+      data: JSON.stringify(myData),
+      contentType: "application/JSON",
+      complete: function () {
+        obtainScore();
+      },
+    });
 }
 
 function updateScore() {
@@ -47,28 +47,28 @@ function updateScore() {
         score: $("input[type='radio'][name='point']:checked").val(),
     }
     $.ajax({
-       url:"http://localhost:8080/api/Score/update",
-        type: "PUT",
-        data: JSON.stringify(myData),
-        contentType: "application/JSON",
-        dataType: "json",
-        complete: function () {
-            obtainScore()
-        }
-    })
+      url: "http://150.230.86.64:81/api/Score/update",
+      type: "PUT",
+      data: JSON.stringify(myData),
+      contentType: "application/JSON",
+      dataType: "json",
+      complete: function () {
+        obtainScore();
+      },
+    });
 }
 
 
 function listReservation() {
     $.ajax({
-        url:"http://localhost:8080/api/Reservation/all",
-        type: "GET",
-        dataType: "json",
-        success: function (answer) {
-            $("#reservationScore").html("")
-            $("#reservationScore").append(drawReservation(answer))
-        }
-    })
+      url: "http://150.230.86.64:81/api/Reservation/all",
+      type: "GET",
+      dataType: "json",
+      success: function (answer) {
+        $("#reservationScore").html("");
+        $("#reservationScore").append(drawReservation(answer));
+      },
+    });
 }
 
 function drawReservation(reservas) {
@@ -83,13 +83,13 @@ function drawReservation(reservas) {
 $(document).on("click", "div ul li", function () {
     $("#getScore ul li").click(function () {
         $.ajax({
-            url:"http://localhost:8080/api/Score/" + $(this).attr("id"),
-            type: "GET",
-            dataType: "json",
-            success: function (answer) {
-                $("#idScore").val(answer.id)
-                $("#messageScore").val(answer.text)
-            }
+          url: "http://150.230.86.64:81/api/Score/" + $(this).attr("id"),
+          type: "GET",
+          dataType: "json",
+          success: function (answer) {
+            $("#idScore").val(answer.id);
+            $("#messageScore").val(answer.text);
+          },
         });
     })
 })

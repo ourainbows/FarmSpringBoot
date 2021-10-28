@@ -1,16 +1,16 @@
 // idMessage messageText
 function obtainMessages() {
     $.ajax({
-        url:"http://localhost:8080/api/Message/all",
-        type: "GET",
-        dataType: "json",
-        success: function (answer) {
-            $("#idMessage").val("")
-            $("#textMessage").val("")
-            $("#farmMessage").val("")
-            $("#getMessage").html("")
-            $("#getMessage").append(drawMessage(answer))
-        }
+      url: "http://150.230.86.64:81/api/Message/all",
+      type: "GET",
+      dataType: "json",
+      success: function (answer) {
+        $("#idMessage").val("");
+        $("#textMessage").val("");
+        $("#farmMessage").val("");
+        $("#getMessage").html("");
+        $("#getMessage").append(drawMessage(answer));
+      },
     });
 }
 function drawMessage(items) {
@@ -24,14 +24,14 @@ function drawMessage(items) {
 
 function listFarmsMessage() {
     $.ajax({
-        url:"http://localhost:8080/api/Farm/all",
-        type: "GET",
-        dataType: "json",
-        success: function (answer) {
-            $("#farmMessage").html("")
-            $("#farmMessage").append(drawFarm(answer))
-        }
-    })
+      url: "http://150.230.86.64:81/api/Farm/all",
+      type: "GET",
+      dataType: "json",
+      success: function (answer) {
+        $("#farmMessage").html("");
+        $("#farmMessage").append(drawFarm(answer));
+      },
+    });
 }
 
 function drawFarm(farms) {
@@ -52,14 +52,14 @@ function createMessage() {
         farm: finca,
     }
     $.ajax({
-        url:"http://localhost:8080/api/Message/save",
-        type: "POST",
-        data: JSON.stringify(myData),
-        contentType: "application/JSON",
-        complete: function () {
-            obtainMessages()
-        }
-    })
+      url: "http://150.230.86.64:81/api/Message/save",
+      type: "POST",
+      data: JSON.stringify(myData),
+      contentType: "application/JSON",
+      complete: function () {
+        obtainMessages();
+      },
+    });
 }
 
 function updateMessage() {
@@ -72,29 +72,29 @@ function updateMessage() {
         farm: finca,
     }
     $.ajax({
-       url:"http://localhost:8080/api/Message/update",
-        type: "PUT",
-        data: JSON.stringify(myData),
-        contentType: "application/JSON",
-        dataType: "json",
-        complete: function () {
-            obtainMessages()
-        }
-    })
+      url: "http://150.230.86.64:81/api/Message/update",
+      type: "PUT",
+      data: JSON.stringify(myData),
+      contentType: "application/JSON",
+      dataType: "json",
+      complete: function () {
+        obtainMessages();
+      },
+    });
 }
 function deleteMessage() {
     let myData = {
         idMessage: $("#idMessage").val()
     }
     $.ajax({
-        url:"http://localhost:8080/api/Message/" + $("#idMessage").val(),
-        type:"DELETE",
-        data: JSON.stringify(myData),
-        contentType:"application/JSON",
-        dataType:'json',
-        success:function(){
-            obtainMessages()
-        }
+      url: "http://150.230.86.64:81/api/Message/" + $("#idMessage").val(),
+      type: "DELETE",
+      data: JSON.stringify(myData),
+      contentType: "application/JSON",
+      dataType: "json",
+      success: function () {
+        obtainMessages();
+      },
     });
 }
 
@@ -103,13 +103,13 @@ function deleteMessage() {
 $(document).on("click", "div ul li", function () {
     $("#getMessage ul li").click(function () {
         $.ajax({
-            url:"http://localhost:8080/api/Message/" + $(this).attr("id"),
-            type: "GET",
-            dataType: "json",
-            success: function (answer) {
-                $("#idMessage").val(answer.idMessage)
-                $("#textMessage").val(answer.messageText)
-            }
+          url: "http://150.230.86.64:81/api/Message/" + $(this).attr("id"),
+          type: "GET",
+          dataType: "json",
+          success: function (answer) {
+            $("#idMessage").val(answer.idMessage);
+            $("#textMessage").val(answer.messageText);
+          },
         });
     })
 })

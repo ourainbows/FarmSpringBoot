@@ -133,6 +133,7 @@ li{
 .reserv-box-main-blank{
     display: flex;
     flex-direction: row;
+    justify-content: space-around;
 }
 .main-blank-get{
     background-color: whithe;

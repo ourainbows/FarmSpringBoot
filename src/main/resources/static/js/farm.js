@@ -1,36 +1,35 @@
 // id, name, address, extension, description
 function obtainFarms() {
     $.ajax({
-        url:"http://localhost:8080/api/Farm/all",
-        type: "GET",
-        dataType: "json",
-        success: function (answer) {
-            
-            $("#idFarm").val("")
-            $("#nameFarm").val("")
-            $("#addressFarm").val("")
-            $("#extensionFarm").val("")
-            $("#descriptionFarm").val("")
-            $("#categoryFarm").val("")
-            $("#idClientFarm").val()
-            $("#getFarm").html("")
-            $("#getFarm").append(drawName(answer))
-            listFarmReservation()
-            listFarmsMessage()
-        }
-    })
+      url: "http://150.230.86.64:81/api/Farm/all",
+      type: "GET",
+      dataType: "json",
+      success: function (answer) {
+        $("#idFarm").val("");
+        $("#nameFarm").val("");
+        $("#addressFarm").val("");
+        $("#extensionFarm").val("");
+        $("#descriptionFarm").val("");
+        $("#categoryFarm").val("");
+        $("#idClientFarm").val();
+        $("#getFarm").html("");
+        $("#getFarm").append(drawName(answer));
+        listFarmReservation();
+        listFarmsMessage();
+      },
+    });
 }
 
 function listCategories() {
     $.ajax({
-        url: "http://localhost:8080/api/Category/all",
-        type: "GET",
-        dataType: "json",
-        success: function (answer) {
-            $("#categoryFarm").html("")
-            $("#categoryFarm").append(drawCategories(answer))
-        }
-    })
+      url: "http://150.230.86.64:81/api/Category/all",
+      type: "GET",
+      dataType: "json",
+      success: function (answer) {
+        $("#categoryFarm").html("");
+        $("#categoryFarm").append(drawCategories(answer));
+      },
+    });
 }
 function drawCategories(categories) {
     let selectOptions = ""
@@ -64,15 +63,15 @@ function createFarm() {
         category: categoria,
     }
     $.ajax({
-        url: "http://localhost:8080/api/Farm/save",
-        type: "POST",
-        data: JSON.stringify(myData),
-        contentType: "application/JSON",
-        dataType: "json",
-        complete: function () {
-            obtainFarms()
-        }
-    })
+      url: "http://150.230.86.64:81/api/Farm/save",
+      type: "POST",
+      data: JSON.stringify(myData),
+      contentType: "application/JSON",
+      dataType: "json",
+      complete: function () {
+        obtainFarms();
+      },
+    });
 }
 
 function updateFarm() {
@@ -88,15 +87,15 @@ function updateFarm() {
         category: categoria,
     }
     $.ajax({
-        url: "http://localhost:8080/api/Farm/update",
-        type: "PUT",
-        data: JSON.stringify(myData),
-        contentType: "application/JSON",
-        dataType: "json",
-        complete: function () {
-            obtainFarms()
-        }
-    })
+      url: "http://150.230.86.64:81/api/Farm/update",
+      type: "PUT",
+      data: JSON.stringify(myData),
+      contentType: "application/JSON",
+      dataType: "json",
+      complete: function () {
+        obtainFarms();
+      },
+    });
 }
 
 function deleteFarm() {
@@ -104,14 +103,14 @@ function deleteFarm() {
         id: $("#idFarm").val()
     }
     $.ajax({
-        url: "http://localhost:8080/api/Farm/" + $("#idFarm").val(),
-        type:"DELETE",
-        data: JSON.stringify(myData),
-        contentType:"application/JSON",
-        dataType:'json',
-        success:function(){
-            obtainFarms()
-        }
+      url: "http://150.230.86.64:81/api/Farm/" + $("#idFarm").val(),
+      type: "DELETE",
+      data: JSON.stringify(myData),
+      contentType: "application/JSON",
+      dataType: "json",
+      success: function () {
+        obtainFarms();
+      },
     });
 }
 
@@ -120,17 +119,17 @@ $(document).on("click", "div ul li", function () {
     // Get Details Farm By ID 
     $("#getFarm ul li").click(function () {
         $.ajax({
-            url:"http://localhost:8080/api/Farm/" + $(this).attr("id"),
-            type: "GET",
-            dataType: "json",
-            success: function (answer) {
-                $("#idFarm").val(answer.id)
-                $("#nameFarm").val(answer.name)
-                $("#addressFarm").val(answer.address)
-                $("#extensionFarm").val(answer.extension)
-                $("#descriptionFarm").val(answer.description)
-                //$("#categoryFarm").val(answer.category["id"])
-            }
+          url: "http://150.230.86.64:81/api/Farm/" + $(this).attr("id"),
+          type: "GET",
+          dataType: "json",
+          success: function (answer) {
+            $("#idFarm").val(answer.id);
+            $("#nameFarm").val(answer.name);
+            $("#addressFarm").val(answer.address);
+            $("#extensionFarm").val(answer.extension);
+            $("#descriptionFarm").val(answer.description);
+            //$("#categoryFarm").val(answer.category["id"])
+          },
         });
     })
 })

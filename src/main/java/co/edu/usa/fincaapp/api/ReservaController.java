@@ -93,7 +93,7 @@ public class ReservaController {
             @PathVariable("dateTwo") String dateTwo) {
         return reservaServicio.getReservationPeriod(dateOne, dateTwo);
     }
-    @GetMapping("report-clients")
+    @GetMapping("/report-clients")
     public List<ContadorClientes> getReservationsReportClient() {
         return reservaServicio.getTopClients();
     }

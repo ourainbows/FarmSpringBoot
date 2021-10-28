@@ -271,7 +271,7 @@
                         <div class="card-text">
                             <input class="form-control" type="date" id="startTimeReserv" />
                             <input class="form-control" type="date" id="endTimeReserv" />
-                            <button class="btn btn-info" onclick="">
+                            <button class="btn btn-info" onclick="obtainReservCount()">
                                 Buscar
                             </button>
                         </div>
@@ -292,11 +292,15 @@
                 <div class="card text-white bg-dark mb-3" id="card">
                     <h5 class="card-tittle">Reservas</h5>
                     <div class="card-body">
-                        <div class="ReservComplete">
-                            Completadas:
+                        <div>
+                            Completadas: 
+                            <div class="reservComplete">
+                            </div>
                         </div>
-                        <div class="ReservCancel">
+                        <div>
                             Canceladas:
+                            <div class="reservCancel">
+                            </div>
                         </div>
                     </div>
                 </div>

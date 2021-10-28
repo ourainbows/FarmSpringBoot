@@ -14,7 +14,7 @@ function obtainReservation() {
             $("#getReservation").append(drawReservation(answer))
             listReservation()
         }
-    });
+    })
 }
 function drawReservation(reservation) {
     let myTable = "<ul>"
@@ -90,7 +90,7 @@ function deleteReservation() {
         success:function(){
             obtainReservation()
         }
-    });
+    })
 }
 
 function listFarmReservation() {
@@ -144,7 +144,7 @@ $(document).on("click", "div ul li", function () {
             success: function (answer) {
                 $("#idReservation").val(answer.id)
             }
-        });
+        })
     })
 })
 

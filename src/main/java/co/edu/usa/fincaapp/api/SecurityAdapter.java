@@ -24,10 +24,11 @@ public class SecurityAdapter extends WebSecurityConfigurerAdapter{
                     .csrf(c -> c
                         .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()))        
                 .oauth2Login()
-                    .defaultSuccessUrl("/", true);
+                /* .loginPage("/login.html") */
+                .defaultSuccessUrl("/", true);
+                    
                 
         http.cors().and().csrf().disable();
     }
 }
     
-

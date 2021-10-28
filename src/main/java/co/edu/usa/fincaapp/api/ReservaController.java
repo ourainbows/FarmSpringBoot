@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.edu.usa.fincaapp.entidades.Reserva;
+import co.edu.usa.fincaapp.reportes.ContadorClientes;
+import co.edu.usa.fincaapp.reportes.StatusReservas;
 import co.edu.usa.fincaapp.servicios.ReservaServicio;
 
 /**
@@ -80,5 +82,19 @@ public class ReservaController {
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     public boolean deleteReserva(@PathVariable("id") Long reservaId) {
         return reservaServicio.deleteReservation(reservaId);
+    }
+
+    @GetMapping("/report-status")
+    public StatusReservas getReservationStatusReport() {
+        return reservaServicio.getReservationStatusReport();
+    }
+    @GetMapping("/report-dates/{dateOne}/{dateTwo}")
+    public List<Reserva> getReservationsReportDates(@PathVariable("dateOne") String dateOne,
+            @PathVariable("dateTwo") String dateTwo) {
+        return reservaServicio.getReservationPeriod(dateOne, dateTwo);
+    }
+    @GetMapping("report-clients")
+    public List<ContadorClientes> getReservationsReportClient() {
+        return reservaServicio.getTopClients();
     }
 }
